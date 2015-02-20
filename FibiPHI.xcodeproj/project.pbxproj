@@ -11,6 +11,8 @@
 		6B6E33C11A926A8800089FCA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C01A926A8800089FCA /* Images.xcassets */; };
 		6B6E33C41A926A8800089FCA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C21A926A8800089FCA /* MainMenu.xib */; };
 		6B6E33D01A926A8800089FCA /* FibiPHITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */; };
+		6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,8 @@
 		6B6E33C91A926A8800089FCA /* FibiPHITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FibiPHITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6E33CE1A926A8800089FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibiPHITests.swift; sourceTree = "<group>"; };
+		6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibonacciSequence.swift; sourceTree = "<group>"; };
+		6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 		6B6E33B01A926A8700089FCA = {
 			isa = PBXGroup;
 			children = (
+				6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */,
+				6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */,
 				6B6E33BB1A926A8800089FCA /* FibiPHI */,
 				6B6E33CC1A926A8800089FCA /* FibiPHITests */,
 				6B6E33BA1A926A8800089FCA /* Products */,
@@ -205,6 +211,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */,
+				6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */,
 				6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +284,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.10;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -312,29 +320,36 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.10;
 			};
 			name = Release;
 		};
 		6B6E33D41A926A8800089FCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.10;
 			};
 			name = Debug;
 		};
 		6B6E33D51A926A8800089FCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.10;
 			};
 			name = Release;
 		};
@@ -393,6 +408,7 @@
 				6B6E33D51A926A8800089FCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6B6E33D61A926A8800089FCA /* Build configuration list for PBXNativeTarget "FibiPHITests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +417,7 @@
 				6B6E33D81A926A8800089FCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
