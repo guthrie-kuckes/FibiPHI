@@ -93,15 +93,16 @@ class DasFibbonaciSequence : NSObject {
         propogateTerms(gapToMakeUp)
         
         
+        //done with actual numbers , doing acessories
         self.stringPointRepresentation.removeAll(keepCapacity: true)
         aproximationExpressions.removeAll(keepCapacity: true)
         
         let numberPreviousToStart = 0
         
         let betterStart =   self.startingNumber
-        let firstPoint = "\(numberPreviousToStart)/\(betterStart)"
+        let firstPoint = "\(betterStart)/\(numberPreviousToStart)"
         stringPointRepresentation.append(firstPoint)
-        let firstPair = Pair(x: numberPreviousToStart , y: betterStart)
+        let firstPair = Pair(x: betterStart , y: numberPreviousToStart)
         aproximationExpressions.append(firstPair)
         
         for var Index = 1 ; Index < self.currentCount ; Index++ {

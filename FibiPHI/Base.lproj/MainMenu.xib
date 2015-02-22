@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
@@ -14,6 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="FibiPHI" customModuleProvider="target">
             <connections>
                 <outlet property="ScaleSlider" destination="iJ3-9j-laB" id="t8s-BP-NmJ"/>
+                <outlet property="aboutMenuItem" destination="5kV-Vb-QxS" id="IWN-kO-CaN"/>
                 <outlet property="fibGraphingView" destination="Y2s-ix-fjp" id="SNB-Kk-iaU"/>
                 <outlet property="residualTableView" destination="d16-iN-YCJ" id="MOf-JR-8fY"/>
                 <outlet property="resiudalTableView" destination="yY6-it-xoE" id="Kun-w3-08f"/>
@@ -31,7 +33,7 @@
                             <menuItem title="About FibiPHI" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                    <action selector="aboutDocAction:" target="Voe-Tx-rLC" id="Bst-eY-f9u"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -719,10 +721,10 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9c-el-294">
-                        <rect key="frame" x="6" y="391" width="245" height="42"/>
+                        <rect key="frame" x="6" y="391" width="245" height="51"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="uyf-RW-2Ba">
                             <font key="font" metaFont="system"/>
-                            <string key="title">PHI=0.6180339887498948482045868343656381177203091798057628621...
+                            <string key="title">PHI=1.6180339887498948482045868343656381177203091798057628621...
 </string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -775,7 +777,7 @@
                             <rect key="frame" x="1" y="119" width="223" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="uPN-XM-Ibh">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="uPN-XM-Ibh">
                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -794,7 +796,7 @@
                     <constraint firstItem="Y2s-ix-fjp" firstAttribute="leading" secondItem="d16-iN-YCJ" secondAttribute="trailing" constant="14" id="xOX-2Q-bhG"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-95" y="195"/>
+            <point key="canvasLocation" x="-110" y="239"/>
         </window>
     </objects>
 </document>

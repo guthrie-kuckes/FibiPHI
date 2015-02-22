@@ -13,6 +13,9 @@ import AppKit
 var DasSharedDelegate : AppDelegate? = nil
 
 
+private let aboutOptions = ["Copyright" : "Copyright 2015 Guthrie Kuckes" , "Version" : "1.0.0" , "Credits" : NSAttributedString(string: "All code in is in Apple's swift language and was written by Guthrie Kuckes in February 2015 for a school project") ]
+
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate  {
 
@@ -56,6 +59,10 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     }
 
     
+    @IBOutlet weak var aboutMenuItem: NSMenuItem!
+    @IBAction func aboutDocAction(sender: AnyObject) {
+                NSApplication.sharedApplication().orderFrontStandardAboutPanelWithOptions(aboutOptions)
+    }
     
     
 }

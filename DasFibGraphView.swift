@@ -50,7 +50,8 @@ class fibGraphView : NSView  {
     //this can be used anywhere on the scren for getting graph lines however not everywhere for getting the golden ratio line ( i think)
     override func drawRect(dirtyRect: NSRect) {
         
-        //this is just the function that does something like graph paper
+        
+//this is just the function that does something like graph paper
         let startingX = dirtyRect.origin.x
         let startingY = dirtyRect.origin.y
         
@@ -129,6 +130,9 @@ class fibGraphView : NSView  {
         verticalBezier.stroke()
         
         
+//done with drawing graph lines
+//start drawing axis labels (axes themselves not drawn
+        
         let linesPerLabel = Int(ceil( Double(100.0) / Double(coordinateDilation)))
         println("lines per label was \(linesPerLabel)")
         
@@ -163,14 +167,14 @@ class fibGraphView : NSView  {
         
 
         
-        
-        //this part not really any rect compliant
+//done with background , draw golden ratio line
+//this part not really any rect compliant
         if (startingX == 0 && startingY == 0) {
             
             var goldenBezierPath = NSBezierPath()
             goldenBezierPath.moveToPoint(dirtyRect.origin)
             
-            let goldenYEnd : CGFloat = PHI * dirtyRect.size.width
+            let goldenYEnd : CGFloat = CGFloat(PHI_P1) * dirtyRect.size.width
             let goldenEndPoint = CGPointMake(endingX, goldenYEnd)
             goldenBezierPath.lineToPoint(goldenEndPoint)
             
@@ -180,6 +184,7 @@ class fibGraphView : NSView  {
         }
         
         
+//done ratio line, draw the fibonacci numbers
         if (fibonnaciNumbers.currentCount == 0) {
             
             fibonnaciNumbers.realizeNumberOfTerms(30)
@@ -211,7 +216,7 @@ class fibGraphView : NSView  {
             let thisNumber : CGFloat = CGFloat(Float(fibonnaciNumbers.numbers[Index]) * dilation )
             let previousNumber : CGFloat = CGFloat( Float(fibonnaciNumbers.numbers[Index - 1]) * dilation)
             
-            let newPoint = CGPointMake(thisNumber, previousNumber)
+            let newPoint = CGPointMake(previousNumber, thisNumber)
             FibonacciBezierPath.lineToPoint(newPoint)
             
             let pointRectangle = CGRectMake(newPoint.x - 5, newPoint.y - 5, 10, 10)
