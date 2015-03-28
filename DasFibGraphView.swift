@@ -124,14 +124,15 @@ class fibGraphView : NSView  {
         graphMaker.addOperationWithBlock(makeVerticalBezierPath)
         graphMaker.waitUntilAllOperationsAreFinished()
         
-        
+        if(coordinateDilation > 0.9) { //this creates the effect of having zommed out of everything
+
         NSColor.blackColor().setStroke()
         horizontalBezier.lineWidth = graphLineWidth
         horizontalBezier.stroke()
         
         verticalBezier.lineWidth = graphLineWidth
         verticalBezier.stroke() //note assuming color here
-        
+        }
         
 //done with drawing graph lines
 //start drawing axis labels (axes themselves not drawn truly)
@@ -170,8 +171,8 @@ class fibGraphView : NSView  {
 //at this point is decently rect compliant
             var goldenBezierPath = NSBezierPath()
             goldenBezierPath.moveToPoint(zPoint)
-            
-            let goldenYEnd : CGFloat = PHI_P1 * (startingX + dirtyRect.size.width)
+                
+            let goldenYEnd : CGFloat = Ordering.sharedOrdering().rawValue * (startingX + dirtyRect.size.width)
             let goldenEndPoint = CGPointMake(endingX, goldenYEnd)
             goldenBezierPath.lineToPoint(goldenEndPoint)
             
@@ -191,9 +192,8 @@ class fibGraphView : NSView  {
         //for this is not compliant with other sequences
         let numberPreviousToStart : CGFloat = 0.0
         
-        let dilation = coordinateDilation
-        let betterStart = CGFloat( Float(fibonnaciNumbers.startingNumber) * dilation)
-        let firstPoint = CGPointMake(numberPreviousToStart, betterStart)
+        let betterStart = CGFloat( Float(fibonnaciNumbers.startingNumber) * coordinateDilation)
+        let firstPoint = autoReversePointMake(numberPreviousToStart, betterStart)//CGPointMake(numberPreviousToStart, betterStart)
         
         var FibonacciBezierPath = NSBezierPath()
         
@@ -210,10 +210,10 @@ class fibGraphView : NSView  {
         NSColor.blackColor().setStroke()
         for var Index = 1 ; Index < fibonnaciNumbers.currentCount ; Index++ {
             
-            let thisNumber : CGFloat = CGFloat(Float(fibonnaciNumbers.numbers[Index]) * dilation )
-            let previousNumber : CGFloat = CGFloat( Float(fibonnaciNumbers.numbers[Index - 1]) * dilation)
+            let thisNumber : CGFloat = CGFloat(Float(fibonnaciNumbers.numbers[Index]) * coordinateDilation )
+            let previousNumber : CGFloat = CGFloat( Float(fibonnaciNumbers.numbers[Index - 1]) * coordinateDilation)
             
-            let newPoint = CGPointMake(previousNumber, thisNumber)
+            let newPoint = autoReversePointMake(previousNumber, thisNumber)//CGPointMake(previousNumber, thisNumber)
             FibonacciBezierPath.lineToPoint(newPoint)
             
             let pointRectangle = CGRectMake(newPoint.x - 5, newPoint.y - 5, 10, 10)
@@ -232,6 +232,12 @@ class fibGraphView : NSView  {
         
         let requestedMagnification = CGFloat(event.magnification + 1.0)
         let combinedMagnification = CGFloat(self.coordinateDilation) * requestedMagnification
+        
+        /* //this makes hard limits on the zooming
+        if combinedMagnification < 1 {
+            return
+        }*/
+        
         self.changeScale(Float(combinedMagnification))
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B11E4B31AC7342A00EDCC97 /* orderHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */; };
 		6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33BE1A926A8800089FCA /* AppDelegate.swift */; };
 		6B6E33C11A926A8800089FCA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C01A926A8800089FCA /* Images.xcassets */; };
 		6B6E33C41A926A8800089FCA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C21A926A8800089FCA /* MainMenu.xib */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = orderHandling.swift; path = FibiPHI/orderHandling.swift; sourceTree = "<group>"; };
 		6B6E33B91A926A8800089FCA /* FibiPHI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FibiPHI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6E33BD1A926A8800089FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6E33BE1A926A8800089FCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */,
 				6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */,
+				6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */,
 				6B6E33BB1A926A8800089FCA /* FibiPHI */,
 				6B6E33CC1A926A8800089FCA /* FibiPHITests */,
 				6B6E33BA1A926A8800089FCA /* Products */,
@@ -214,6 +217,7 @@
 				6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */,
 				6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */,
 				6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */,
+				6B11E4B31AC7342A00EDCC97 /* orderHandling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,10 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
 
     @IBOutlet weak var window: NSWindow!
 
+    @IBOutlet weak var phiValueText: NSTextField!
+    
+    @IBOutlet weak var PHIreciprocalMenuItem: NSMenuItem!
+    
     @IBOutlet weak var fibGraphingView: fibGraphView!
 
     @IBOutlet weak var startingNumberField: NSTextField!
@@ -30,6 +34,16 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     
     @IBOutlet weak var resiudalTableView: NSTableView!
     
+    
+    @IBAction func wantsPHIreciprocal(sender: AnyObject) {
+        
+        println("reciprocation desired")
+        Ordering.opp()
+        
+        self.phiValueText.stringValue = "PHI: \(Ordering.sharedOrdering().rawValue)"
+        self.fibGraphingView.setNeedsDisplayInRect(fibGraphingView.bounds)
+        self.resiudalTableView.reloadData()
+    }
     
     @IBAction func takeScaleSliderIntValue(sender: AnyObject) {
         
@@ -60,6 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
 
     
     @IBOutlet weak var aboutMenuItem: NSMenuItem!
+    
     @IBAction func aboutDocAction(sender: AnyObject) {
                 NSApplication.sharedApplication().orderFrontStandardAboutPanelWithOptions(aboutOptions)
     }

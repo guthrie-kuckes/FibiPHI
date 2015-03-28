@@ -175,11 +175,12 @@ extension DasFibbonaciSequence : NSTableViewDataSource {
         } else if (tableColumn?.identifier == "Aproximation") {
             
             let pairToUse = aproximationExpressions[row]
-            let divided = pairToUse.x
-            let divideBy = pairToUse.y
-            let answer = CGFloat(divided)/CGFloat(divideBy)
+            let divided = CGFloat(pairToUse.x)
+            let divideBy = CGFloat(pairToUse.y)
+            let answer = orderReverseDivision(divided, divideBy)//CGFloat(divided)/CGFloat(divideBy)
             
-            let subjtracted : CGFloat = PHI_P1 - answer
+            
+            let subjtracted : CGFloat = Ordering.sharedOrdering().rawValue - answer
             let ultimate = abs(subjtracted)
             
             if (ultimate < 0.000_1) {

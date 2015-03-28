@@ -14,9 +14,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="FibiPHI" customModuleProvider="target">
             <connections>
+                <outlet property="PHIreciprocalMenuItem" destination="qCQ-m9-Ztb" id="AVH-ri-Tvc"/>
                 <outlet property="ScaleSlider" destination="iJ3-9j-laB" id="t8s-BP-NmJ"/>
                 <outlet property="aboutMenuItem" destination="5kV-Vb-QxS" id="IWN-kO-CaN"/>
                 <outlet property="fibGraphingView" destination="Y2s-ix-fjp" id="SNB-Kk-iaU"/>
+                <outlet property="phiValueText" destination="Z9c-el-294" id="sIm-iR-4rg"/>
                 <outlet property="residualTableView" destination="d16-iN-YCJ" id="MOf-JR-8fY"/>
                 <outlet property="resiudalTableView" destination="yY6-it-xoE" id="Kun-w3-08f"/>
                 <outlet property="startingNumberField" destination="n0k-tV-u82" id="Ds8-Yr-Osg"/>
@@ -625,12 +627,6 @@
                                     <action selector="toggleToolbarShown:" target="-1" id="BXY-wc-z0C"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="runToolbarCustomizationPalette:" target="-1" id="pQI-g3-MTW"/>
-                                </connections>
-                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -659,6 +655,35 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Tools" id="eKp-HC-vQi">
+                    <attributedString key="attributedTitle">
+                        <fragment content="Tools">
+                            <attributes>
+                                <font key="NSFont" metaFont="smallSystem"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Tools" id="b4Q-MB-eTL">
+                        <items>
+                            <menuItem title="PHI reciprocal" id="qCQ-m9-Ztb">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="wantsPHIreciprocal:" target="Voe-Tx-rLC" id="Bgp-AF-643"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <attributedString key="userComments">
+                        <fragment content="Label">
+                            <attributes>
+                                <font key="NSFont" metaFont="smallSystem"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                </menuItem>
                 <menuItem title="Help" id="wpr-3q-Mcd">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
@@ -670,6 +695,9 @@
                             </menuItem>
                         </items>
                     </menu>
+                </menuItem>
+                <menuItem title="Menu" id="adh-SD-Rqp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>
         </menu>
@@ -683,7 +711,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="940" height="568"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-Vk-bbP">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-Vk-bbP">
                         <rect key="frame" x="8" y="531" width="138" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sequence starts with:" id="Opy-7x-xgk">
                             <font key="font" metaFont="system"/>
@@ -691,7 +719,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n0k-tV-u82">
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n0k-tV-u82">
                         <rect key="frame" x="152" y="529" width="82" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="bU2-8E-4ZJ">
                             <font key="font" metaFont="system"/>
@@ -702,17 +730,17 @@
                             <action selector="takeTextFieldStartingValue:" target="Voe-Tx-rLC" id="jmH-EU-fIO"/>
                         </connections>
                     </textField>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJ3-9j-laB">
+                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iJ3-9j-laB">
                         <rect key="frame" x="13" y="461" width="200" height="27"/>
                         <sliderCell key="cell" alignment="left" minValue="5" maxValue="500" doubleValue="500" tickMarkPosition="below" numberOfTickMarks="33" sliderType="linear" id="Eu9-OX-opy"/>
                         <connections>
                             <action selector="takeScaleSliderIntValue:" target="Voe-Tx-rLC" id="LLB-xN-AOg"/>
                         </connections>
                     </slider>
-                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y2s-ix-fjp" customClass="fibGraphView" customModule="FibiPHI" customModuleProvider="target">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Y2s-ix-fjp" customClass="fibGraphView" customModule="FibiPHI" customModuleProvider="target">
                         <rect key="frame" x="274" y="0.0" width="666" height="568"/>
                     </customView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRu-jm-gUu">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TRu-jm-gUu">
                         <rect key="frame" x="94" y="488" width="39" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Scale" id="bpi-0U-yWe">
                             <font key="font" metaFont="system"/>
@@ -720,19 +748,9 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9c-el-294">
-                        <rect key="frame" x="6" y="391" width="245" height="51"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="uyf-RW-2Ba">
-                            <font key="font" metaFont="system"/>
-                            <string key="title">PHI=1.6180339887498948482045868343656381177203091798057628621...
-</string>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d16-iN-YCJ">
-                        <rect key="frame" x="20" y="11" width="240" height="379"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="TWi-Jg-WRx">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d16-iN-YCJ">
+                        <rect key="frame" x="20" y="11" width="240" height="398"/>
+                        <clipView key="contentView" misplaced="YES" id="TWi-Jg-WRx">
                             <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -786,17 +804,45 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9c-el-294">
+                        <rect key="frame" x="20" y="405" width="242" height="39"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="39" id="jNV-PA-tbB"/>
+                        </constraints>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="uyf-RW-2Ba">
+                            <font key="font" metaFont="system"/>
+                            <string key="title">PHI=1.61803398874989.
+</string>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Y2s-ix-fjp" secondAttribute="bottom" id="071-Yv-34s"/>
-                    <constraint firstItem="Y2s-ix-fjp" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="4wk-6Y-ByR"/>
-                    <constraint firstItem="d16-iN-YCJ" firstAttribute="top" secondItem="Z9c-el-294" secondAttribute="bottom" constant="1" id="EaU-8L-1LK"/>
-                    <constraint firstAttribute="trailing" secondItem="Y2s-ix-fjp" secondAttribute="trailing" id="PWc-6C-cgC"/>
-                    <constraint firstAttribute="bottom" secondItem="d16-iN-YCJ" secondAttribute="bottom" constant="11" id="i5d-1d-JH6"/>
-                    <constraint firstItem="Y2s-ix-fjp" firstAttribute="leading" secondItem="d16-iN-YCJ" secondAttribute="trailing" constant="14" id="xOX-2Q-bhG"/>
+                    <constraint firstItem="d16-iN-YCJ" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="3tD-Bc-2j5"/>
+                    <constraint firstItem="TRu-jm-gUu" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="96" id="5wp-Je-XH1"/>
+                    <constraint firstItem="d16-iN-YCJ" firstAttribute="top" secondItem="iJ3-9j-laB" secondAttribute="bottom" constant="53" id="6oq-IK-bMJ"/>
+                    <constraint firstItem="Y2s-ix-fjp" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="9Vw-M1-9CU"/>
+                    <constraint firstItem="Z9c-el-294" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="22" id="CiX-vb-MEf"/>
+                    <constraint firstItem="TRu-jm-gUu" firstAttribute="centerX" secondItem="iJ3-9j-laB" secondAttribute="centerX" id="Egx-4P-5ot"/>
+                    <constraint firstItem="n0k-tV-u82" firstAttribute="leading" secondItem="3Un-Vk-bbP" secondAttribute="trailing" constant="8" symbolic="YES" id="JI4-tY-VNh"/>
+                    <constraint firstItem="3Un-Vk-bbP" firstAttribute="baseline" secondItem="n0k-tV-u82" secondAttribute="baseline" id="MQe-7p-nTJ"/>
+                    <constraint firstItem="Y2s-ix-fjp" firstAttribute="leading" secondItem="iJ3-9j-laB" secondAttribute="trailing" constant="63" id="VoE-3k-ppV"/>
+                    <constraint firstItem="Y2s-ix-fjp" firstAttribute="leading" secondItem="Z9c-el-294" secondAttribute="trailing" constant="14" id="Zio-vw-BtE"/>
+                    <constraint firstAttribute="bottom" secondItem="d16-iN-YCJ" secondAttribute="bottom" constant="11" id="bsN-Go-HLe"/>
+                    <constraint firstItem="iJ3-9j-laB" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="15" id="fEy-lx-daG"/>
+                    <constraint firstItem="iJ3-9j-laB" firstAttribute="top" secondItem="TRu-jm-gUu" secondAttribute="bottom" constant="2" id="i6R-bw-viH"/>
+                    <constraint firstItem="3Un-Vk-bbP" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="iMl-by-aTB"/>
+                    <constraint firstAttribute="bottom" secondItem="Y2s-ix-fjp" secondAttribute="bottom" id="jK9-HR-VfF"/>
+                    <constraint firstAttribute="trailing" secondItem="Y2s-ix-fjp" secondAttribute="trailing" id="k1h-rB-TcA"/>
+                    <constraint firstItem="TRu-jm-gUu" firstAttribute="top" secondItem="3Un-Vk-bbP" secondAttribute="bottom" constant="26" id="pGO-SN-sVl"/>
+                    <constraint firstItem="Y2s-ix-fjp" firstAttribute="leading" secondItem="n0k-tV-u82" secondAttribute="trailing" constant="40" id="pfK-ml-0lb"/>
+                    <constraint firstItem="3Un-Vk-bbP" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="10" id="r3C-aj-gRe"/>
+                    <constraint firstItem="Z9c-el-294" firstAttribute="top" secondItem="iJ3-9j-laB" secondAttribute="bottom" constant="18" id="yTa-ib-Man"/>
+                    <constraint firstItem="Z9c-el-294" firstAttribute="trailing" secondItem="d16-iN-YCJ" secondAttribute="trailing" id="zrX-p3-AqI"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-110" y="239"/>
+            <point key="canvasLocation" x="-159" y="173"/>
         </window>
     </objects>
 </document>
