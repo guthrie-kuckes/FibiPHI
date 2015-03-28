@@ -57,64 +57,77 @@ class fibGraphView : NSView  {
         
         let cgInterval = CGFloat(coordinateDilation)
         
+        
+        
         var horizontalStart = [CGPoint]()
         var horizontalEnd = [CGPoint]()
         
-        let numberOfTimesHorizontal : CGFloat = CGFloat(floor(startingY / cgInterval))//I think this and its equivalent are switched
+        var verticalStart = [CGPoint]()
+        var verticalEnd = [CGPoint]()
         
-        for var Index : CGFloat = numberOfTimesHorizontal * cgInterval; Index < endingY ; Index += cgInterval {
+        var horizontalBezier = NSBezierPath()
+        var verticalBezier = NSBezierPath()
+
+        
+        //for concurrency, the horizontal graph lines and vertical graph line making will be divided into seperate blocks to be executed concurrently on the same queue
+        func makeHorizontalBezierPath() -> Void {
             
+            let numberOfTimesHorizontal : CGFloat = CGFloat(floor(startingY / cgInterval))//I think this and its equivalent are switched
+            for var Index : CGFloat = numberOfTimesHorizontal * cgInterval; Index < endingY ; Index += cgInterval {
+                
                 let newStartPoint = CGPointMake(startingX, Index)
                 let newEndPoint = CGPointMake(endingX, Index)
                 
                 horizontalStart.append(newStartPoint)
                 horizontalEnd.append(newEndPoint)
+            }
+
+            var externalHorizontalIndex : Int = 0 // this is done (as way to avoid a regular for loop) to loop through both arrays at the same time
+            for point in horizontalStart {
+                
+                horizontalBezier.moveToPoint(point)
+                horizontalBezier.lineToPoint(horizontalEnd[externalHorizontalIndex])
+                
+                externalHorizontalIndex++
+            }
+
         }
         
         
-        
-        var verticalStart = [CGPoint]()
-        var verticalEnd = [CGPoint]()
-        
-        
-        let numberOfTimesVertical : CGFloat = floor(startingY / cgInterval)
-        
-        for var Index : CGFloat = numberOfTimesVertical * cgInterval ; Index < endingX ; Index += cgInterval {
+        func makeVerticalBezierPath() -> Void {
             
-            
+            let numberOfTimesVertical : CGFloat = floor(startingY / cgInterval)
+            for var Index : CGFloat = numberOfTimesVertical * cgInterval ; Index < endingX ; Index += cgInterval {
+                
                 let newStartPoint = CGPointMake(Index, startingY)
                 let newEndPoint = CGPointMake(Index, endingY)
                 
                 verticalStart.append(newStartPoint)
                 verticalEnd.append(newEndPoint)
+            }
+
+            
+            var externalVerticalIndex : Int = 0
+            for point in verticalStart {
+                
+                verticalBezier.moveToPoint(point)
+                verticalBezier.lineToPoint(verticalEnd[externalVerticalIndex])
+                
+                externalVerticalIndex++
+            }
+
         }
         
+
+        let graphMaker = NSOperationQueue()
+        graphMaker.addOperationWithBlock(makeHorizontalBezierPath)
+        graphMaker.addOperationWithBlock(makeVerticalBezierPath)
+        graphMaker.waitUntilAllOperationsAreFinished()
         
-        
-        var horizontalBezier = NSBezierPath()
-        var externalHorizontalIndex : Int = 0 // this is done (as way to avoid a regular for loop) to loop through both arrays at the same time
-        for point in horizontalStart {
-            
-            horizontalBezier.moveToPoint(point)
-            horizontalBezier.lineToPoint(horizontalEnd[externalHorizontalIndex])
-            
-            externalHorizontalIndex++
-        }
         
         NSColor.blackColor().setStroke()
         horizontalBezier.lineWidth = graphLineWidth
         horizontalBezier.stroke()
-        
-        
-        var verticalBezier = NSBezierPath()
-        var externalVerticalIndex : Int = 0
-        for point in verticalStart {
-            
-            verticalBezier.moveToPoint(point)
-            verticalBezier.lineToPoint(verticalEnd[externalVerticalIndex])
-            
-            externalVerticalIndex++
-        }
         
         verticalBezier.lineWidth = graphLineWidth
         verticalBezier.stroke() //note assuming color here
