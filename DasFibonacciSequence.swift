@@ -15,7 +15,7 @@ import Darwin
 //absurd amount of digits of the golden ratio
 let PHI : CGFloat = 0.6180339887498948482045868343656381177203091798057628621
 //just global contant for golden ratio plus one since my table is fudged and I need this to get residual
-let PHI_P1 : Double = 1.6180339887498948482045868343656381177203091798057628621
+let PHI_P1 : CGFloat = 1.6180339887498948482045868343656381177203091798057628621
 
 
 private typealias Pair = (x: Int , y: Int)
@@ -175,11 +175,12 @@ extension DasFibbonaciSequence : NSTableViewDataSource {
         } else if (tableColumn?.identifier == "Aproximation") {
             
             let pairToUse = aproximationExpressions[row]
-            let divided = Double(pairToUse.x)
-            let divideBy = Double(pairToUse.y)
-            let answer = divided/divideBy
+            let divided = pairToUse.x
+            let divideBy = pairToUse.y
+            let answer = CGFloat(divided)/CGFloat(divideBy)
             
-            let ultimate = abs(PHI_P1 - answer)
+            let subjtracted : CGFloat = PHI_P1 - answer
+            let ultimate = abs(subjtracted)
             
             if (ultimate < 0.000_1) {
                 return smallNumberFormatter.stringFromNumber(ultimate)

@@ -12,7 +12,7 @@ import Cocoa
 import AppKit
 
 
-
+private let zPoint = CGPointMake(0, 0)
 
 
 
@@ -24,13 +24,8 @@ class fibGraphView : NSView  {
     
     private (set) var fibonnaciNumbers = DasFibbonaciSequence()
     
-    private  var coordinateDilation : Float = 100
+    private (set) var coordinateDilation : Float = 100
     
-    var currentDilation : Float {
-        get {
-            return coordinateDilation
-        }
-    }
     
     func changeFibbonaciStartB(newStartB: Int) { //A / B starts refers to a mathematics paper on fibonacci numbers I read
         
@@ -52,31 +47,28 @@ class fibGraphView : NSView  {
         
         
 //this is just the function that does something like graph paper
-        let startingX = dirtyRect.origin.x
-        let startingY = dirtyRect.origin.y
+        let startingX : CGFloat = dirtyRect.origin.x //note they are all CGFloats
+        let startingY : CGFloat = dirtyRect.origin.y
         
         let endingX = startingX + dirtyRect.size.width
         let endingY = startingY + dirtyRect.size.height
         
-        
         let graphLineWidth : CGFloat = 1
-        let simpleGraphInterval = Int(coordinateDilation)
-        let graphInterval : CGFloat = CGFloat(simpleGraphInterval)
         
+        let cgInterval = CGFloat(coordinateDilation)
         
         var horizontalStart = [CGPoint]()
         var horizontalEnd = [CGPoint]()
         
-        for var Index = startingY ; Index < endingY ; Index++ {
+        let numberOfTimesHorizontal : CGFloat = CGFloat(floor(startingY / cgInterval))//I think this and its equivalent are switched
+        
+        for var Index : CGFloat = numberOfTimesHorizontal * cgInterval; Index < endingY ; Index += cgInterval {
             
-            if (Index % graphInterval == 0) {
-                
                 let newStartPoint = CGPointMake(startingX, Index)
                 let newEndPoint = CGPointMake(endingX, Index)
                 
                 horizontalStart.append(newStartPoint)
                 horizontalEnd.append(newEndPoint)
-            }
         }
         
         
@@ -85,23 +77,22 @@ class fibGraphView : NSView  {
         var verticalEnd = [CGPoint]()
         
         
-        for var Index = startingX ; Index < endingX ; Index++ {
+        let numberOfTimesVertical : CGFloat = floor(startingY / cgInterval)
+        
+        for var Index : CGFloat = numberOfTimesVertical * cgInterval ; Index < endingX ; Index += cgInterval {
             
-            if (Index % graphInterval == 0) {
-                
+            
                 let newStartPoint = CGPointMake(Index, startingY)
                 let newEndPoint = CGPointMake(Index, endingY)
                 
                 verticalStart.append(newStartPoint)
                 verticalEnd.append(newEndPoint)
-            }
-            
         }
         
         
         
         var horizontalBezier = NSBezierPath()
-        var externalHorizontalIndex : Int = 0
+        var externalHorizontalIndex : Int = 0 // this is done (as way to avoid a regular for loop) to loop through both arrays at the same time
         for point in horizontalStart {
             
             horizontalBezier.moveToPoint(point)
@@ -125,24 +116,20 @@ class fibGraphView : NSView  {
             externalVerticalIndex++
         }
         
-        NSColor.blackColor().setStroke()
         verticalBezier.lineWidth = graphLineWidth
-        verticalBezier.stroke()
+        verticalBezier.stroke() //note assuming color here
         
         
 //done with drawing graph lines
-//start drawing axis labels (axes themselves not drawn
+//start drawing axis labels (axes themselves not drawn truly)
         
-        let linesPerLabel = Int(ceil( Double(100.0) / Double(coordinateDilation)))
-        println("lines per label was \(linesPerLabel)")
+        let linesPerLabel = Int(ceil( 100.0 / coordinateDilation))
         
-        
-        
+
         for var Iterator = 0 ; Iterator < horizontalStart.count ; Iterator += linesPerLabel {
             
-            let actualNumber = Float(horizontalStart[Iterator].y)
-            //fudging
-            let calibratedLabel = ceil(actualNumber / coordinateDilation)
+            let actualNumber = horizontalStart[Iterator].y
+            let calibratedLabel = actualNumber / cgInterval
             let label : NSString = "\(calibratedLabel)"
             
             let regPoint = horizontalStart[Iterator]
@@ -154,9 +141,8 @@ class fibGraphView : NSView  {
         
         for var Iterator = 0 ; Iterator < verticalStart.count ; Iterator += linesPerLabel {
             
-            let actualNumber = Float(verticalStart[Iterator].x)
-            //fudging
-            let calibratedLabel = ceil(actualNumber / coordinateDilation)
+            let actualNumber = verticalStart[Iterator].x
+            let calibratedLabel = actualNumber / cgInterval
             let label : NSString = "\(calibratedLabel)"
             
             let regPoint = verticalStart[Iterator]
@@ -168,20 +154,18 @@ class fibGraphView : NSView  {
 
         
 //done with background , draw golden ratio line
-//this part not really any rect compliant
-        if (startingX == 0 && startingY == 0) {
-            
+//at this point is decently rect compliant
             var goldenBezierPath = NSBezierPath()
-            goldenBezierPath.moveToPoint(dirtyRect.origin)
+            goldenBezierPath.moveToPoint(zPoint)
             
-            let goldenYEnd : CGFloat = CGFloat(PHI_P1) * dirtyRect.size.width
+            let goldenYEnd : CGFloat = PHI_P1 * (startingX + dirtyRect.size.width)
             let goldenEndPoint = CGPointMake(endingX, goldenYEnd)
             goldenBezierPath.lineToPoint(goldenEndPoint)
             
             goldenBezierPath.lineWidth = 3
             NSColor.redColor().setStroke()
             goldenBezierPath.stroke()
-        }
+    
         
         
 //done ratio line, draw the fibonacci numbers
