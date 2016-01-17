@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     
     @IBAction func wantsPHIreciprocal(sender: AnyObject) {
         
-        println("reciprocation desired")
+        print("reciprocation desired")
         Ordering.opp()
         
         self.phiValueText.stringValue = "PHI: \(Ordering.sharedOrdering().rawValue)"

@@ -6,34 +6,61 @@
 //  Copyright (c) 2015 Obsidian Design. All rights reserved.
 //
 
-import Foundation
 
-///all these required
-import Cocoa
-import Darwin
 
-//absurd amount of digits of the golden ratio
-let PHI : CGFloat = 0.6180339887498948482045868343656381177203091798057628621
+
+import Foundation //realize that ths is a pretty basic, abstract, class
+
+
+
+
+
+
+//absurd amount of digits of the golden ratio. some of these, of course, will be chopped
+public let PHI : CGFloat = 0.6180339887498948482045868343656381177203091798057628621
+
 //just global contant for golden ratio plus one since my table is fudged and I need this to get residual
 let PHI_P1 : CGFloat = 1.6180339887498948482045868343656381177203091798057628621
 
 
-private typealias Pair = (x: Int , y: Int)
+internal typealias Pair = (x: Int , y: Int)
+
+
+
+
 
 
 class DasFibbonaciSequence : NSObject {
     
-    //reflects fact that this not completly compliant with other sequences if number that comes before is not zero
-    private ( set) var startingNumber : Int = 1
     
+    //number for the sequence to start with. there is a function to call to change this
+    private (set) var startingNumber : Int = 1
+    
+    
+    //numbers in the sequence
     private (set) var numbers = [Int]()
     
-    private var stringPointRepresentation = [String]()
+    
+    /*
+        reflects the idea that in a fibonnaci sequence, as you go further and further along, a number in the fibonacci sequence divided
+        by the previous number gets increasingly close to the golden ratio. 
+    
+        so the array contains pairs which represent two numbers which divided approach the golden ratio, this for all numbers in the sequence
+    */
+    private (set) var aproximationExpressions = [Pair]()
 
-    private var aproximationExpressions = [Pair]()
     
-    private var smallNumberFormatter : NSNumberFormatter
+    /*
+        contains essentially a textual representatio of every Pair in aproximationExpressions, in the form number/previous number
+    */
+    private (set) var stringPointRepresentation = [String]()
     
+    
+    var smallNumberFormatter : NSNumberFormatter
+    
+    
+    
+    //the number of numbers we have in the sequence currently
     var currentCount : Int {
         get {
             
@@ -41,9 +68,56 @@ class DasFibbonaciSequence : NSObject {
         }
     }
     
+    
+    //the initialization function. note that the only thing initialized is the number formatter used
+    override init () {
+        
+        smallNumberFormatter = NSNumberFormatter()
+        smallNumberFormatter.numberStyle = NSNumberFormatterStyle.ScientificStyle
+        smallNumberFormatter.maximumSignificantDigits = 8
+    }
+    
+
+    /* 
+        extends the sequence by numberOfTermsMore terms. this only for numbers, does not touch the string or pairs arrays
+        because of this, it is only to be used by being called by realizeNumberOfTerms, which will take care of these things
+        - as well it can not handle the first few terms in the sequence, a reason why you use realizeNumberOfTerms
+    */
+    private func propogateTerms(numberOfTernsMore: Int) {
+        
+        
+        if ( !(numbers.count >= 2) ) {
+            
+            print("propogation called incorrectly")
+            exit(3)
+        }
+        
+        
+        var previousNumberIndex = numbers.count - 1 //ie the index of the last member of the array
+        
+        for var Index : Int = 0 ; Index < numberOfTernsMore ; Index++ {
+            
+            let twoBeforeIndex = previousNumberIndex - 1
+            
+            let newTermToAdd = numbers[previousNumberIndex] + numbers[twoBeforeIndex]
+            
+            numbers.append(newTermToAdd)
+            
+            previousNumberIndex++
+            
+        }
+        
+    }
+
+    
+    /*
+        capable of changing the starting number of the sequence
+        will make sure that the numbers array gets replaced to reflect the new reality, and will be replaced to its old length
+        the stringPointRepresentation and aproximation expressions array will also be replaced
+    */
     func changeStartingNumber(newStart: Int) {
         
-        if (newStart == self.startingNumber) {
+        if (newStart == self.startingNumber) { //do nothing if the new number is the same as what we have already acounted for. (recomputing is a rather expensive operation)
             return
         }
         
@@ -54,19 +128,25 @@ class DasFibbonaciSequence : NSObject {
         realizeNumberOfTerms(count)
     }
     
-    //this takes a number of terms that numbers array should have
-    //numbers array will have at least terms number of terms after calling it
+    
+    
+    
+    /*
+        takes a number of terms that numbers array should have
+        numbers array will have at least terms number of terms after calling it
+        will also make sure that the aproximation expressions array and stringPointRepresentation arrays contain what they should for the new numbers array
+    */
     func realizeNumberOfTerms(terms: Int) {
         
-        if (self.numbers.count >= terms) {
+        if (self.numbers.count >= terms) { //do nothing if this is already true
             
             return
-        } else if (terms == 0) {
+        } else if (terms == 0) { //do nothing if we have been told to do nothing
             return
         }
         
         
-        var previousToStartingNumber : Int = 0
+        let previousToStartingNumber : Int = 0
         
         
         if (numbers.count < 2) {
@@ -118,80 +198,4 @@ class DasFibbonaciSequence : NSObject {
         }
     }
     
-    
-    //this function is just to add a bunch more terms to the array
-    private func propogateTerms(numberOfTernsMore: Int) {
-        
-        var previousToStartingNumber : Int = 0
-        
-        
-        if ( !(numbers.count >= 2) ) {
-            
-            println("propogation called incorrectly")
-            exit(3)
-        }
-        
-        
-        var previousNumberIndex = numbers.count - 1
-        
-        for var Index : Int = 0 ; Index < numberOfTernsMore ; Index++ {
-            
-            let twoBeforeIndex = previousNumberIndex - 1
-            
-            let newTermToAdd = numbers[previousNumberIndex] + numbers[twoBeforeIndex]
-            
-            numbers.append(newTermToAdd)
-            
-            previousNumberIndex++
-            
-        }
-        
-    }
-    
-    
-    override init () {
-    
-        smallNumberFormatter = NSNumberFormatter()
-        smallNumberFormatter.numberStyle = NSNumberFormatterStyle.ScientificStyle
-        smallNumberFormatter.maximumSignificantDigits = 8
-    }
-    
-    
 }
-
-
-
-// this extension is solely to give the functionality as a table view data source
-extension DasFibbonaciSequence : NSTableViewDataSource {
-    
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return self.numbers.count
-    }
-    
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-
-        if(tableColumn?.identifier == "TermsDivided") {
-            return stringPointRepresentation[row]
-        } else if (tableColumn?.identifier == "Aproximation") {
-            
-            let pairToUse = aproximationExpressions[row]
-            let divided = CGFloat(pairToUse.x)
-            let divideBy = CGFloat(pairToUse.y)
-            let answer = orderReverseDivision(divided, divideBy)//CGFloat(divided)/CGFloat(divideBy)
-            
-            
-            let subjtracted : CGFloat = Ordering.sharedOrdering().rawValue - answer
-            let ultimate = abs(subjtracted)
-            
-            if (ultimate < 0.000_1) {
-                return smallNumberFormatter.stringFromNumber(ultimate)
-            }
-            
-            return ultimate
-        }
-        
-        return "Error. Contact Developer"
-    }
-    
-}
-

@@ -16,7 +16,7 @@ private let zPoint = CGPointMake(0, 0)
 
 
 
-class fibGraphView : NSView  {
+public class fibGraphView : NSView  {
     
     
     private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() , NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
@@ -43,7 +43,7 @@ class fibGraphView : NSView  {
     
     
     //this can be used anywhere on the scren for getting graph lines however not everywhere for getting the golden ratio line ( i think)
-    override func drawRect(dirtyRect: NSRect) {
+    override public func drawRect(dirtyRect: NSRect) {
         
         
 //this is just the function that does something like graph paper
@@ -193,16 +193,16 @@ class fibGraphView : NSView  {
         let numberPreviousToStart : CGFloat = 0.0
         
         let betterStart = CGFloat( Float(fibonnaciNumbers.startingNumber) * coordinateDilation)
-        let firstPoint = autoReversePointMake(numberPreviousToStart, betterStart)//CGPointMake(numberPreviousToStart, betterStart)
+        let firstPoint = autoReversePointMake(numberPreviousToStart, y: betterStart)//CGPointMake(numberPreviousToStart, betterStart)
         
         var FibonacciBezierPath = NSBezierPath()
         
         FibonacciBezierPath.moveToPoint(firstPoint)
         
         let currentContext = NSGraphicsContext.currentContext()?.CGContext
-        println("doing rerendering (inside drawrect:)")
+        Swift.print("doing rerendering (inside drawrect:)")
         if (currentContext == nil) {
-            println("problems getting graphics context")
+            Swift.print("problems getting graphics context")
             exit(5)
         }
         
@@ -213,7 +213,7 @@ class fibGraphView : NSView  {
             let thisNumber : CGFloat = CGFloat(Float(fibonnaciNumbers.numbers[Index]) * coordinateDilation )
             let previousNumber : CGFloat = CGFloat( Float(fibonnaciNumbers.numbers[Index - 1]) * coordinateDilation)
             
-            let newPoint = autoReversePointMake(previousNumber, thisNumber)//CGPointMake(previousNumber, thisNumber)
+            let newPoint = autoReversePointMake(previousNumber, y: thisNumber)//CGPointMake(previousNumber, thisNumber)
             FibonacciBezierPath.lineToPoint(newPoint)
             
             let pointRectangle = CGRectMake(newPoint.x - 5, newPoint.y - 5, 10, 10)
@@ -225,10 +225,11 @@ class fibGraphView : NSView  {
         FibonacciBezierPath.lineWidth = 4.0
         
         FibonacciBezierPath.stroke()
+        
     }
     
     
-    override func magnifyWithEvent(event: NSEvent) {
+    override public func magnifyWithEvent(event: NSEvent) {
         
         let requestedMagnification = CGFloat(event.magnification + 1.0)
         let combinedMagnification = CGFloat(self.coordinateDilation) * requestedMagnification

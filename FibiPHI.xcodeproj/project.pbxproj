@@ -14,6 +14,7 @@
 		6B6E33D01A926A8800089FCA /* FibiPHITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */; };
 		6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
 		6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */; };
+		EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibiPHITests.swift; sourceTree = "<group>"; };
 		6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibonacciSequence.swift; sourceTree = "<group>"; };
 		6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibGraphView.swift; sourceTree = "<group>"; };
+		EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FibonnaciSequence as data Source.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */,
+				EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */,
 				6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */,
 				6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */,
 				6B6E33BB1A926A8800089FCA /* FibiPHI */,
@@ -159,7 +162,9 @@
 		6B6E33B11A926A8700089FCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Obsidian Design";
 				TargetAttributes = {
 					6B6E33B81A926A8700089FCA = {
@@ -217,6 +222,7 @@
 				6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */,
 				6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */,
 				6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */,
+				EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */,
 				6B11E4B31AC7342A00EDCC97 /* orderHandling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +294,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -325,35 +331,33 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		6B6E33D41A926A8800089FCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		6B6E33D51A926A8800089FCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
