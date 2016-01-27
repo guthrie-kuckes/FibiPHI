@@ -15,6 +15,16 @@
 		6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
 		6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */; };
 		EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
+		EE0983741C4B246D0070B7CE /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		EE6AE2041C4B86F1001615DB /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
+		EE6AE2051C4B9304001615DB /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
+		EEAC76281C4C5297002463EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAC76271C4C5297002463EF /* main.m */; };
+		EEAC762D1C4C5336002463EF /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		EEAC762E1C4C533A002463EF /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
+		EEAC762F1C4C533B002463EF /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
+		EEAC76341C4C5472002463EF /* orderHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */; };
+		EEAC76351C4C5473002463EF /* orderHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */; };
+		EEAC76361C4C5490002463EF /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +37,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EEAC76231C4C5297002463EF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = orderHandling.swift; path = FibiPHI/orderHandling.swift; sourceTree = "<group>"; };
+		6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orderHandling.swift; sourceTree = "<group>"; };
 		6B6E33B91A926A8800089FCA /* FibiPHI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FibiPHI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6E33BD1A926A8800089FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6E33BE1A926A8800089FCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,8 +60,13 @@
 		6B6E33CE1A926A8800089FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibiPHITests.swift; sourceTree = "<group>"; };
 		6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibonacciSequence.swift; sourceTree = "<group>"; };
-		6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibGraphView.swift; sourceTree = "<group>"; };
+		6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DasFibGraphView.swift; path = ../DasFibGraphView.swift; sourceTree = "<group>"; };
 		EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FibonnaciSequence as data Source.swift"; sourceTree = "<group>"; };
+		EE5CADEF1C4B259F00732FBE /* fibIdeas.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = fibIdeas.playground; sourceTree = SOURCE_ROOT; };
+		EE6AE1FB1C4B8326001615DB /* FibiPHI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FibiPHI-Bridging-Header.h"; sourceTree = "<group>"; };
+		EE6AE2031C4B86F1001615DB /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = /usr/local/lib/libgmp.a; sourceTree = "<absolute>"; };
+		EEAC76251C4C5297002463EF /* numberExplor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = numberExplor; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEAC76271C4C5297002463EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE6AE2041C4B86F1001615DB /* libgmp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +82,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE6AE2051C4B9304001615DB /* libgmp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEAC76221C4C5297002463EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEAC76361C4C5490002463EF /* libgmp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,10 +102,10 @@
 			children = (
 				6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */,
 				EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */,
-				6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */,
-				6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */,
 				6B6E33BB1A926A8800089FCA /* FibiPHI */,
 				6B6E33CC1A926A8800089FCA /* FibiPHITests */,
+				EEAC76261C4C5297002463EF /* numberExplor */,
+				EEAC762C1C4C52DE002463EF /* special */,
 				6B6E33BA1A926A8800089FCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +115,7 @@
 			children = (
 				6B6E33B91A926A8800089FCA /* FibiPHI.app */,
 				6B6E33C91A926A8800089FCA /* FibiPHITests.xctest */,
+				EEAC76251C4C5297002463EF /* numberExplor */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,6 +123,8 @@
 		6B6E33BB1A926A8800089FCA /* FibiPHI */ = {
 			isa = PBXGroup;
 			children = (
+				6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */,
+				6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */,
 				6B6E33BE1A926A8800089FCA /* AppDelegate.swift */,
 				6B6E33C01A926A8800089FCA /* Images.xcassets */,
 				6B6E33C21A926A8800089FCA /* MainMenu.xib */,
@@ -116,6 +156,24 @@
 				6B6E33CE1A926A8800089FCA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EEAC76261C4C5297002463EF /* numberExplor */ = {
+			isa = PBXGroup;
+			children = (
+				EEAC76271C4C5297002463EF /* main.m */,
+			);
+			path = numberExplor;
+			sourceTree = "<group>";
+		};
+		EEAC762C1C4C52DE002463EF /* special */ = {
+			isa = PBXGroup;
+			children = (
+				EE6AE1FB1C4B8326001615DB /* FibiPHI-Bridging-Header.h */,
+				EE6AE2031C4B86F1001615DB /* libgmp.a */,
+				EE5CADEF1C4B259F00732FBE /* fibIdeas.playground */,
+			);
+			name = special;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +214,23 @@
 			productReference = 6B6E33C91A926A8800089FCA /* FibiPHITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EEAC76241C4C5297002463EF /* numberExplor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEAC762B1C4C5297002463EF /* Build configuration list for PBXNativeTarget "numberExplor" */;
+			buildPhases = (
+				EEAC76211C4C5297002463EF /* Sources */,
+				EEAC76221C4C5297002463EF /* Frameworks */,
+				EEAC76231C4C5297002463EF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = numberExplor;
+			productName = numberExplor;
+			productReference = EEAC76251C4C5297002463EF /* numberExplor */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -174,6 +249,9 @@
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 6B6E33B81A926A8700089FCA;
 					};
+					EEAC76241C4C5297002463EF = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = 6B6E33B41A926A8700089FCA /* Build configuration list for PBXProject "FibiPHI" */;
@@ -191,6 +269,7 @@
 			targets = (
 				6B6E33B81A926A8700089FCA /* FibiPHI */,
 				6B6E33C81A926A8800089FCA /* FibiPHITests */,
+				EEAC76241C4C5297002463EF /* numberExplor */,
 			);
 		};
 /* End PBXProject section */
@@ -231,7 +310,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0983741C4B246D0070B7CE /* DasFibonacciSequence.swift in Sources */,
 				6B6E33D01A926A8800089FCA /* FibiPHITests.swift in Sources */,
+				EEAC762E1C4C533A002463EF /* FibonnaciSequence as data Source.swift in Sources */,
+				EEAC76351C4C5473002463EF /* orderHandling.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEAC76211C4C5297002463EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEAC762D1C4C5336002463EF /* DasFibonacciSequence.swift in Sources */,
+				EEAC76281C4C5297002463EF /* main.m in Sources */,
+				EEAC762F1C4C533B002463EF /* FibonnaciSequence as data Source.swift in Sources */,
+				EEAC76341C4C5472002463EF /* orderHandling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,26 +431,45 @@
 		6B6E33D41A926A8800089FCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		6B6E33D51A926A8800089FCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -374,9 +486,12 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = FibiPHITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FibiPHI.app/Contents/MacOS/FibiPHI";
 			};
 			name = Debug;
@@ -390,10 +505,40 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = FibiPHITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FibiPHI.app/Contents/MacOS/FibiPHI";
+			};
+			name = Release;
+		};
+		EEAC76291C4C5297002463EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		EEAC762A1C4C5297002463EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -423,6 +568,15 @@
 			buildConfigurations = (
 				6B6E33D71A926A8800089FCA /* Debug */,
 				6B6E33D81A926A8800089FCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEAC762B1C4C5297002463EF /* Build configuration list for PBXNativeTarget "numberExplor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEAC76291C4C5297002463EF /* Debug */,
+				EEAC762A1C4C5297002463EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

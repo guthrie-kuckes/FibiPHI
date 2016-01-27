@@ -6,56 +6,99 @@
 //  Copyright (c) 2015 Obsidian Design. All rights reserved.
 //
 
-import Foundation
-import Darwin
-import Cocoa
+
+
+
+
 import AppKit
 
 
+
+
+
+
+//the point at teh top left corner of the screen
 private let zPoint = CGPointMake(0, 0)
 
+
+//how we draw the graph scale labels.
+// TODO: Make the labels look nicer
+private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() , NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
+
+
+//the width of the scale lines in the graph
+//TODO: implement changing the size and density of the line as we zoom in and out
+private let graphLineWidth : CGFloat = 1
+
+
+//the pixel thickness of the line y = PHI * x
+private let PHILineWidth : CGFloat = 3.0;
+
+
+private let BabyPowder = NSColor(colorLiteralRed: 254, green: 254, blue: 250, alpha: 1.0)
 
 
 public class fibGraphView : NSView  {
     
-    
-    private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() , NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
 
-    
-    private (set) var fibonnaciNumbers = DasFibbonaciSequence()
-    
-    private (set) var coordinateDilation : Float = 100
+    //the data that the graph is going to represent
+    private (set) var fibonnaciNumbers = DasFibbonaciSequence(computedTerms: 30)
     
     
-    func changeFibbonaciStartB(newStartB: Int) { //A / B starts refers to a mathematics paper on fibonacci numbers I read
+    //the scale of the graph. in px : 1 unit
+    private (set) var coordinateDilation : CGFloat = 100
+    
+    
+    
+    //A / B starts refers to a mathematics paper on fibonacci numbers I read. 
+    //in otherwords, change the second seed. and then redraw
+    //TODO: impelement changing the first seed
+    func changeFibbonaciStartB(newStartB: Int) {
         
         self.fibonnaciNumbers.changeStartingNumber(newStartB)
         self.setNeedsDisplayInRect(self.bounds)
     }
     
     
-    func changeScale(newDilation: Float) {
+    //for changing the scale of the graph from within the program. 
+    //the dilation is how many px : 1  unit
+    func changeScale(newDilation: CGFloat) {
         
-        self.coordinateDilation = Float(newDilation)
+        self.coordinateDilation = newDilation
         self.setNeedsDisplayInRect(self.bounds)
-        DasSharedDelegate?.ScaleSlider.floatValue = newDilation
+        
     }
     
+    
+    //event that can be sent by the mouse to change the scale
+    override public func magnifyWithEvent(event: NSEvent) {
+        
+        let requestedMagnification = CGFloat(event.magnification + 1.0)
+        let combinedMagnification = CGFloat(self.coordinateDilation) * requestedMagnification
+        Swift.print("\(requestedMagnification) the event mag was")
+        
+        DasSharedDelegate?.ScaleSlider.doubleValue = Double(combinedMagnification) //moves the scale slider as we use the mousepad to change the scale
+        
+        self.changeScale(combinedMagnification)
+    }
+
+
     
     //this can be used anywhere on the scren for getting graph lines however not everywhere for getting the golden ratio line ( i think)
     override public func drawRect(dirtyRect: NSRect) {
         
+        Swift.print("doing rerendering (inside drawrect:)")
         
-//this is just the function that does something like graph paper
+        let boundsPath = NSBezierPath(rect: self.bounds)
+        NSColor.whiteColor().setFill()
+        boundsPath.fill()
+        
+        //this is just the function that does something like graph paper
         let startingX : CGFloat = dirtyRect.origin.x //note they are all CGFloats
         let startingY : CGFloat = dirtyRect.origin.y
         
         let endingX = startingX + dirtyRect.size.width
         let endingY = startingY + dirtyRect.size.height
-        
-        let graphLineWidth : CGFloat = 1
-        
-        let cgInterval = CGFloat(coordinateDilation)
         
         
         
@@ -65,6 +108,7 @@ public class fibGraphView : NSView  {
         var verticalStart = [CGPoint]()
         var verticalEnd = [CGPoint]()
         
+        
         var horizontalBezier = NSBezierPath()
         var verticalBezier = NSBezierPath()
 
@@ -72,78 +116,74 @@ public class fibGraphView : NSView  {
         //for concurrency, the horizontal graph lines and vertical graph line making will be divided into seperate blocks to be executed concurrently on the same queue
         func makeHorizontalBezierPath() -> Void {
             
-            let numberOfTimesHorizontal : CGFloat = CGFloat(floor(startingY / cgInterval))//I think this and its equivalent are switched
-            for var Index : CGFloat = numberOfTimesHorizontal * cgInterval; Index < endingY ; Index += cgInterval {
+            let numberOfTimesHorizontal : CGFloat = CGFloat( floor(startingY / coordinateDilation) ) //I think this is to get something on the exact line, in case the cg interval is not so ezact
+            
+        
+            for var Index : CGFloat = numberOfTimesHorizontal * coordinateDilation; Index < endingY ; Index += coordinateDilation { //cg interval is thus the number of pixels which equals a scale of one.
                 
                 let newStartPoint = CGPointMake(startingX, Index)
                 let newEndPoint = CGPointMake(endingX, Index)
                 
-                horizontalStart.append(newStartPoint)
+                
+                horizontalStart.append(newStartPoint) //add them to a new array too make the labeling easier
                 horizontalEnd.append(newEndPoint)
-            }
-
-            var externalHorizontalIndex : Int = 0 // this is done (as way to avoid a regular for loop) to loop through both arrays at the same time
-            for point in horizontalStart {
                 
-                horizontalBezier.moveToPoint(point)
-                horizontalBezier.lineToPoint(horizontalEnd[externalHorizontalIndex])
-                
-                externalHorizontalIndex++
+                horizontalBezier.moveToPoint(newStartPoint)
+                horizontalBezier.lineToPoint(newEndPoint)
             }
-
+            
+            horizontalBezier.lineWidth = graphLineWidth
         }
         
         
         func makeVerticalBezierPath() -> Void {
             
-            let numberOfTimesVertical : CGFloat = floor(startingY / cgInterval)
-            for var Index : CGFloat = numberOfTimesVertical * cgInterval ; Index < endingX ; Index += cgInterval {
+            let numberOfTimesVertical : CGFloat = floor(startingY / coordinateDilation)
+            for var Index : CGFloat = numberOfTimesVertical * coordinateDilation ; Index < endingX ; Index += coordinateDilation {
                 
                 let newStartPoint = CGPointMake(Index, startingY)
                 let newEndPoint = CGPointMake(Index, endingY)
                 
+                
                 verticalStart.append(newStartPoint)
                 verticalEnd.append(newEndPoint)
+                
+                verticalBezier.moveToPoint(newStartPoint)
+                verticalBezier.lineToPoint(newEndPoint)
             }
 
             
-            var externalVerticalIndex : Int = 0
-            for point in verticalStart {
-                
-                verticalBezier.moveToPoint(point)
-                verticalBezier.lineToPoint(verticalEnd[externalVerticalIndex])
-                
-                externalVerticalIndex++
-            }
-
+            verticalBezier.lineWidth = graphLineWidth
         }
         
 
+        
         let graphMaker = NSOperationQueue()
         graphMaker.addOperationWithBlock(makeHorizontalBezierPath)
         graphMaker.addOperationWithBlock(makeVerticalBezierPath)
         graphMaker.waitUntilAllOperationsAreFinished()
         
+        
+        
         if(coordinateDilation > 0.9) { //this creates the effect of having zommed out of everything
 
-        NSColor.blackColor().setStroke()
-        horizontalBezier.lineWidth = graphLineWidth
-        horizontalBezier.stroke()
-        
-        verticalBezier.lineWidth = graphLineWidth
-        verticalBezier.stroke() //note assuming color here
+            NSColor.blackColor().setStroke()
+            horizontalBezier.stroke()
+            verticalBezier.stroke() //note assuming color here
         }
         
-//done with drawing graph lines
-//start drawing axis labels (axes themselves not drawn truly)
+
+        //done with drawing graph lines
+        //start drawing axis labels (axes themselves not drawn truly)
         
-        let linesPerLabel = Int(ceil( 100.0 / coordinateDilation))
+        
+        let linesPerLabel = Int( ceil( 100.0 / coordinateDilation) ) //the effect is to have labels about every 100 px
         
 
         for var Iterator = 0 ; Iterator < horizontalStart.count ; Iterator += linesPerLabel {
             
             let actualNumber = horizontalStart[Iterator].y
-            let calibratedLabel = actualNumber / cgInterval
+            let calibratedLabel : CGFloat = floor(actualNumber / coordinateDilation)
             let label : NSString = "\(calibratedLabel)"
             
             let regPoint = horizontalStart[Iterator]
@@ -156,7 +196,7 @@ public class fibGraphView : NSView  {
         for var Iterator = 0 ; Iterator < verticalStart.count ; Iterator += linesPerLabel {
             
             let actualNumber = verticalStart[Iterator].x
-            let calibratedLabel = actualNumber / cgInterval
+            let calibratedLabel = floor(actualNumber / coordinateDilation)
             let label : NSString = "\(calibratedLabel)"
             
             let regPoint = verticalStart[Iterator]
@@ -169,49 +209,42 @@ public class fibGraphView : NSView  {
         
 //done with background , draw golden ratio line
 //at this point is decently rect compliant
-            var goldenBezierPath = NSBezierPath()
+            let goldenBezierPath = NSBezierPath()
             goldenBezierPath.moveToPoint(zPoint)
                 
             let goldenYEnd : CGFloat = Ordering.sharedOrdering().rawValue * (startingX + dirtyRect.size.width)
             let goldenEndPoint = CGPointMake(endingX, goldenYEnd)
             goldenBezierPath.lineToPoint(goldenEndPoint)
             
-            goldenBezierPath.lineWidth = 3
+            goldenBezierPath.lineWidth = PHILineWidth
             NSColor.redColor().setStroke()
             goldenBezierPath.stroke()
     
         
         
 //done ratio line, draw the fibonacci numbers
-        if (fibonnaciNumbers.currentCount == 0) {
-            
-            fibonnaciNumbers.realizeNumberOfTerms(30)
-        }
-        
         
         //for this is not compliant with other sequences
         let numberPreviousToStart : CGFloat = 0.0
         
-        let betterStart = CGFloat( Float(fibonnaciNumbers.startingNumber) * coordinateDilation)
+        let betterStart = CGFloat(fibonnaciNumbers.startingNumber) * coordinateDilation
         let firstPoint = autoReversePointMake(numberPreviousToStart, y: betterStart)//CGPointMake(numberPreviousToStart, betterStart)
         
-        var FibonacciBezierPath = NSBezierPath()
+        let FibonacciBezierPath = NSBezierPath()
         
         FibonacciBezierPath.moveToPoint(firstPoint)
         
         let currentContext = NSGraphicsContext.currentContext()?.CGContext
-        Swift.print("doing rerendering (inside drawrect:)")
-        if (currentContext == nil) {
-            Swift.print("problems getting graphics context")
-            exit(5)
-        }
+        
+        assert(currentContext != nil, "error: problems getting a CGContext from an NSGraphicsContext")
+        
         
         CGContextSetLineWidth(currentContext, 4.0)
         NSColor.blackColor().setStroke()
         for var Index = 1 ; Index < fibonnaciNumbers.currentCount ; Index++ {
             
-            let thisNumber : CGFloat = CGFloat(Float(fibonnaciNumbers.numbers[Index]) * coordinateDilation )
-            let previousNumber : CGFloat = CGFloat( Float(fibonnaciNumbers.numbers[Index - 1]) * coordinateDilation)
+            let thisNumber : CGFloat = CGFloat(fibonnaciNumbers.numbers[Index]) * coordinateDilation
+            let previousNumber : CGFloat = CGFloat( fibonnaciNumbers.numbers[Index - 1]) * coordinateDilation
             
             let newPoint = autoReversePointMake(previousNumber, y: thisNumber)//CGPointMake(previousNumber, thisNumber)
             FibonacciBezierPath.lineToPoint(newPoint)
@@ -226,20 +259,6 @@ public class fibGraphView : NSView  {
         
         FibonacciBezierPath.stroke()
         
-    }
-    
-    
-    override public func magnifyWithEvent(event: NSEvent) {
-        
-        let requestedMagnification = CGFloat(event.magnification + 1.0)
-        let combinedMagnification = CGFloat(self.coordinateDilation) * requestedMagnification
-        
-        /* //this makes hard limits on the zooming
-        if combinedMagnification < 1 {
-            return
-        }*/
-        
-        self.changeScale(Float(combinedMagnification))
     }
     
 }

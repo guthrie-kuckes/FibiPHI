@@ -47,7 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     
     @IBAction func takeScaleSliderIntValue(sender: AnyObject) {
         
-        let newValue = ScaleSlider.floatValue
+        let newValue : CGFloat = CGFloat(ScaleSlider.doubleValue)
         fibGraphingView.changeScale(newValue)
     }
     

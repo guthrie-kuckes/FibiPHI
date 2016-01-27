@@ -7,11 +7,15 @@
 //
 
 
+// TODO: make compatible with negative numbers
+
+
+
+
+
 
 
 import Foundation //realize that ths is a pretty basic, abstract, class
-
-
 
 
 
@@ -23,7 +27,17 @@ public let PHI : CGFloat = 0.618033988749894848204586834365638117720309179805762
 let PHI_P1 : CGFloat = 1.6180339887498948482045868343656381177203091798057628621
 
 
+
+
+//      this works in conjunction with FibGraphView, which divideds numbers in the fibonacci
+//sequence by each other to show that they ever approach PHI
+//
+//      this can be represented graphically with one number in the sequecnce as x and another as y, so 
+//storing numbers in the sequence like this is a nice precursor to that
 internal typealias Pair = (x: Int , y: Int)
+
+
+
 
 
 
@@ -33,12 +47,17 @@ internal typealias Pair = (x: Int , y: Int)
 class DasFibbonaciSequence : NSObject {
     
     
-    //number for the sequence to start with. there is a function to call to change this
+    //number for the sequence to start with. there is a function to call to change this.
     private (set) var startingNumber : Int = 1
     
     
     //numbers in the sequence
     private (set) var numbers = [Int]()
+    
+    
+    //a constant to note that the class does not yet support negative terms
+    let previousToStartingNumber : Int = 0
+
     
     
     /*
@@ -77,6 +96,14 @@ class DasFibbonaciSequence : NSObject {
         smallNumberFormatter.maximumSignificantDigits = 8
     }
     
+    
+    //a convenience initializer which immediatly calls realizeNumberOfTerms, to make sure it is filled out
+    convenience init(computedTerms: Int) {
+        
+        self.init()
+        self.realizeNumberOfTerms(computedTerms)
+    }
+    
 
     /* 
         extends the sequence by numberOfTermsMore terms. this only for numbers, does not touch the string or pairs arrays
@@ -86,25 +113,24 @@ class DasFibbonaciSequence : NSObject {
     private func propogateTerms(numberOfTernsMore: Int) {
         
         
-        if ( !(numbers.count >= 2) ) {
-            
-            print("propogation called incorrectly")
-            exit(3)
-        }
+        //without implementing negative terms, the first two terms are special, always being 0 and then the starting number
+        assert(self.currentCount > 1, "DasFibonacciSequence.propogateTerms called incorrectly")
+        
         
         
         var previousNumberIndex = numbers.count - 1 //ie the index of the last member of the array
         
+        
         for var Index : Int = 0 ; Index < numberOfTernsMore ; Index++ {
             
-            let twoBeforeIndex = previousNumberIndex - 1
             
-            let newTermToAdd = numbers[previousNumberIndex] + numbers[twoBeforeIndex]
+            let twoBeforeIndex = previousNumberIndex - 1 //the index of the second to last member of the array
             
+            
+            let newTermToAdd = numbers[previousNumberIndex] + numbers[twoBeforeIndex] //calculates the next term using previous term + term before that
             numbers.append(newTermToAdd)
             
             previousNumberIndex++
-            
         }
         
     }
@@ -117,15 +143,17 @@ class DasFibbonaciSequence : NSObject {
     */
     func changeStartingNumber(newStart: Int) {
         
+        
         if (newStart == self.startingNumber) { //do nothing if the new number is the same as what we have already acounted for. (recomputing is a rather expensive operation)
             return
         }
+        
         
         let count = currentCount
         self.numbers.removeAll(keepCapacity: true)
         
         self.startingNumber = newStart
-        realizeNumberOfTerms(count)
+        realizeNumberOfTerms(count) //will take care of the Pair and String arrays
     }
     
     
@@ -145,13 +173,11 @@ class DasFibbonaciSequence : NSObject {
             return
         }
         
-        
-        let previousToStartingNumber : Int = 0
-        
+
         
         if (numbers.count < 2) {
             
-            if (numbers.count < 1 && terms >= 1) {
+            if (numbers.isEmpty) {
                 
                 let firstTerm = startingNumber
                 numbers.append(firstTerm)

@@ -27,15 +27,32 @@ class FibiPHITests: XCTestCase {
         XCTAssert(true, "Pass")
     }
     
+    func testFibSequencePerformance() {
+        
+        let newSeq = DasFibbonaciSequence()
+        self.measureBlock { () -> Void in
+            
+            newSeq.realizeNumberOfTerms(50)
+            for i in 0...999 {
+                newSeq.changeStartingNumber(i)
+            }
+        }
+    }
+    
+    
+    /*
     func testPerformanceExample() {
         // This is an example of a performance test case.
         
-        let view = fibGraphView()
+        
         self.measureBlock() {
             // Put the code you want to measure the time of here.
             
-            view.setNeedsDisplayInRect(view.bounds)
+            for _ in 0...100000 {
+                
+                view.setNeedsDisplayInRect(view.bounds)
+            }
         }
-    }
+    }*/
     
 }
