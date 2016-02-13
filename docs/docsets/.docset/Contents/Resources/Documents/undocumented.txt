@@ -1,0 +1,38 @@
+DasFibonacciSequence.swift
+	public let PHI : CGFloat = 0.6180339887498948482045868343656381177203091798057628621
+	let PHI_P1 : CGFloat = 1.6180339887498948482045868343656381177203091798057628621
+	public class DasFibbonaciSequence : NSObject
+	var smallNumberFormatter : NSNumberFormatter
+	public class DasFibbonaciSequence : NSObject
+DasFibGraphView.swift
+	internal let graphLineWidth : CGFloat = 1
+	public class DASFibGraphView : NSView
+	required public init?(coder: NSCoder)
+AppDelegate.swift
+	var DasSharedDelegate : AppDelegate? = nil
+	class AppDelegate: NSObject, NSApplicationDelegate
+	@IBOutlet weak var window: NSWindow!
+	@IBOutlet weak var phiValueText: NSTextField!
+	@IBOutlet weak var PHIreciprocalMenuItem: NSMenuItem!
+	@IBOutlet weak var fibGraphingView: DASFibGraphView!
+	@IBOutlet weak var startingNumberField: NSTextField!
+	@IBOutlet weak var ScaleSlider: NSSlider!
+	@IBOutlet weak var resiudalTableView: NSTableView!
+	@IBAction func wantsPHIreciprocal(sender: AnyObject)
+	@IBAction func takeScaleSliderIntValue(sender: AnyObject)
+	@IBAction func takeTextFieldStartingValue(sender: AnyObject)
+	func applicationDidFinishLaunching(aNotification: NSNotification)
+	func applicationWillTerminate(aNotification: NSNotification)
+	@IBOutlet weak var aboutMenuItem: NSMenuItem!
+	@IBAction func aboutDocAction(sender: AnyObject)
+FibonnaciSequence as data Source.swift
+	public func numberOfRowsInTableView(tableView: NSTableView) -> Int
+	public func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject?
+orderHandling.swift
+	enum Ordering : CGFloat
+	case PHI = 0.6180339887498948482045868343656381177203091798057628621
+	case PHI_1 = 1.6180339887498948482045868343656381177203091798057628621
+	static func opp()
+	static func sharedOrdering() -> Ordering
+	func autoReversePointMake(x: CGFloat, y: CGFloat) -> CGPoint
+	func orderReverseDivision(divided: CGFloat, divisor: CGFloat) -> CGFloat

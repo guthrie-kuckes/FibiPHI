@@ -13,7 +13,8 @@
 import AppKit
 
 
-
+//TODO: make as much as possible of this use CoreGraphics
+//TODO: implement this as two classes, have a plain graph paper class
 
 //the point at teh top left corner of the screen
 private let zPoint = CGPointMake(0, 0)
@@ -24,9 +25,9 @@ private let zPoint = CGPointMake(0, 0)
 private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() , NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
 
 
-//the width of the scale lines in the graph
+///the width of the scale lines in the graph
 //TODO: implement changing the size and density of the line as we zoom in and out
-private let graphLineWidth : CGFloat = 1
+internal let graphLineWidth : CGFloat = 1
 
 
 //the pixel thickness of the line y = PHI * x
@@ -37,7 +38,7 @@ private let PHILineWidth : CGFloat = 3.0;
 ///private let BabyPowder = NSColor(colorLiteralRed: 254, green: 254, blue: 250, alpha: 1.0)
 
 
-//the grey color of the lines on the graph.
+///the grey color of the lines on the graph.
 private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 171/255, alpha: 1.0  )
 
 
@@ -45,7 +46,7 @@ private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 17
 internal extension NSBezierPath {
     
     
-    //moves the path to point, and then draws a line to toPoint 
+    ///moves the path to point, and then draws a line to toPoint
     func lineFrom(point point: CGPoint, toPoint: CGPoint) {
         
         self.moveToPoint(point)
@@ -55,127 +56,25 @@ internal extension NSBezierPath {
 
 
 
-//after a lot of work, I hit upon this algorithm, which gives the value, in uints that one small scale marker should represent
-internal func smallBarValueForScale(scale scale: CGFloat) -> CGFloat {
-    
-    let ten : CGFloat = 10.0
-    let theValue : CGFloat = pow(ten, 2.0 - ceil( log10( scale/2.5 ) ) ) / 5.0
-    return theValue
-}
-
-
-
-func getLineMaker(inout normalPath: NSBezierPath, inout boldPath: NSBezierPath, startPointArray: UnsafeMutablePointer<[CGPoint]>, endPointArray: UnsafeMutablePointer<[CGPoint]>, let theRect: CGRect, let isVertical: Bool, let coordinateDilation: CGFloat) -> () -> Void {
-    
-    
-    let startingValue : CGFloat
-    let endingValue : CGFloat
-    
-    let oppositeEnd : CGFloat
-    let oppositeStart : CGFloat
-    let currentProcess : (CGFloat) -> (CGPoint,  CGPoint)
-
-    if(isVertical) {
-        
-        
-        startingValue = theRect.origin.y
-        endingValue = startingValue + theRect.height
-        
-        oppositeEnd = theRect.origin.x + theRect.width
-        oppositeStart = theRect.origin.x
-
-        func verticalProcess(index: CGFloat) -> (CGPoint, CGPoint) {
-            
-            let startPoint = CGPointMake(index, startingValue)
-            let endPoint = CGPointMake(index, endingValue)
-            return (startPoint, endPoint)
-        }
-
-        
-        currentProcess = verticalProcess
-
-    } else {
-        
-        
-        startingValue = theRect.origin.x
-        endingValue = startingValue + theRect.width
-        
-        oppositeEnd = theRect.origin.y + theRect.height
-        oppositeStart = theRect.origin.y
-        
-        func horizontalProcess(index: CGFloat) -> ( CGPoint,  CGPoint) {
-            
-            let startPoint = CGPointMake(startingValue, index)
-            let endPoint = CGPointMake(endingValue, index)
-            return (startPoint, endPoint)
-        }
-        
-        currentProcess = horizontalProcess
-    }
-    
-    
-    
-    let smallBarValue : CGFloat = smallBarValueForScale(scale: coordinateDilation)
-    let smallBarPixels : CGFloat = smallBarValue  * coordinateDilation
-    let numberOfTimesAlreadyTesselated : CGFloat = floor(oppositeStart/smallBarPixels)
-    
-    
-    func toReturn() {
-        
-        var timesThroughLoop = 0
-        
-        for var Index : CGFloat = numberOfTimesAlreadyTesselated * smallBarPixels; Index < oppositeEnd; Index += smallBarPixels { //cg interval is thus the number of pixels which equals a scale of one.
-            
-            let (newStartPoint, newEndPoint) = currentProcess(Index)
-            
-            
-            if(timesThroughLoop % 5 == 0) {
-                
-                boldPath.lineFrom(point: newStartPoint, toPoint: newEndPoint)
-                
-            } else {
-                
-                normalPath.lineFrom(point: newStartPoint, toPoint: newEndPoint)
-            }
-            
-            let newWrappedBeginning = [newStartPoint]
-
-            
-            startPointArray.memory.append(newStartPoint) //add them to a new array too make the labeling easier
-            endPointArray.memory.append(newEndPoint)
-            
-            timesThroughLoop++
-            
-        }
-        
-        normalPath.lineWidth = graphLineWidth
-        boldPath.lineWidth = graphLineWidth + 1
-        
-        Swift.print("startPoint had \(startPointArray.memory.count) inside the func" )
-
-    }
-    
-    return toReturn
-}
 
 
 
 public class DASFibGraphView : NSView  {
     
 
-    //the data that the graph is going to represent
+    ///the data that the graph is going to represent
     private (set) var fibonnaciNumbers = DasFibbonaciSequence(computedTerms: 30)
     
     
-    //the scale of the graph. in px : 1 unit
+    ///the scale of the graph. in px : 1 unit
     private (set) var coordinateDilation : CGFloat = 100
     
-    //the queue operations not happening on the main queue happen on while drawing this view
+    ///the queue operations not happening on the main queue happen on while drawing this view
     private let graphMaker = NSOperationQueue()
 
     
     
-    //have our own initalizer, to be able to better initalize graphMaker
+    ///have our own initalizer, to be able to better initalize graphMaker
     override init(frame frameRect: NSRect) {
         
         super.init(frame: frameRect)
@@ -184,7 +83,7 @@ public class DASFibGraphView : NSView  {
     }
     
 
-    //required if we want to have our own initializer.
+    ///required if we want to have our own initializer.
     //TODO: figure out why this keeps getting called on start up, and implement it truly
     required public init?(coder: NSCoder) {
         
@@ -193,9 +92,9 @@ public class DASFibGraphView : NSView  {
     }
     
     
-    //A / B starts refers to a mathematics paper on fibonacci numbers I read. 
-    //in otherwords, change the second seed. and then redraw
-    //TODO: impelement changing the first seed
+    ///A / B starts refers to a mathematics paper on fibonacci numbers I read.
+    ///in otherwords, change the second seed. and then redraw
+    ///TODO: impelement changing the first seed
     func changeFibbonaciStartB(newStartB: Int) {
         
         self.fibonnaciNumbers.changeStartingNumber(newStartB)
@@ -203,8 +102,8 @@ public class DASFibGraphView : NSView  {
     }
     
     
-    //for changing the scale of the graph from within the program. 
-    //the dilation is how many px : 1  unit
+    ///for changing the scale of the graph from within the program.
+    ///the dilation is how many px : 1  unit
     func changeScale(newDilation: CGFloat) {
         
         self.coordinateDilation = newDilation
@@ -213,7 +112,7 @@ public class DASFibGraphView : NSView  {
     }
     
     
-    //event that can be sent by the mouse to change the scale
+    ///event that can be sent by the mouse to change the scale
     override public func magnifyWithEvent(event: NSEvent) {
         
         let requestedMagnification = CGFloat(event.magnification + 1.0)
@@ -227,7 +126,7 @@ public class DASFibGraphView : NSView  {
 
 
     
-    //this can be used anywhere on the scren for getting graph lines however not everywhere for getting the golden ratio line ( i think)
+    ///this can be used anywhere on the scren for getting graph lines however not everywhere for getting the golden ratio line ( i think)
     override public func drawRect(dirtyRect: NSRect) {
         
         Swift.print("doing rerendering (inside drawrect:)")
@@ -241,11 +140,6 @@ public class DASFibGraphView : NSView  {
         
         
         //this is just the function that does something like graph paper
-        let startingX : CGFloat = dirtyRect.origin.x //note they are all CGFloats
-        
-        let endingX = startingX + dirtyRect.size.width
-        
-        
         
         var horizontalStart = [CGPoint]()
         var horizontalEnd = [CGPoint]()
@@ -293,8 +187,8 @@ public class DASFibGraphView : NSView  {
         for var Iterator = 0 ; Iterator < horizontalStart.count ; Iterator += 5 {
             
             let actualNumber = horizontalStart[Iterator].y
-            let calibratedLabel : CGFloat = floor(actualNumber / coordinateDilation)
-            let label : NSString = "\(calibratedLabel)"
+            let calibratedLabel : CGFloat = actualNumber / coordinateDilation
+            let label : NSString = GraphViewFormatLabel(calibratedLabel)
             
             let regPoint = horizontalStart[Iterator]
             let betterPoint = CGPointMake(regPoint.x + 1.0, regPoint.y + 1.0)
@@ -306,8 +200,8 @@ public class DASFibGraphView : NSView  {
         for var Iterator = 0 ; Iterator < verticalStart.count ; Iterator += 5 {
             
             let actualNumber = verticalStart[Iterator].x
-            let calibratedLabel = floor(actualNumber / coordinateDilation)
-            let label : NSString = "\(calibratedLabel)"
+            let calibratedLabel = actualNumber / coordinateDilation
+            let label : NSString = GraphViewFormatLabel(calibratedLabel)
             
             let regPoint = verticalStart[Iterator]
             let betterPoint = CGPointMake(regPoint.x + 1.0, regPoint.y + 1.0)
@@ -322,8 +216,8 @@ public class DASFibGraphView : NSView  {
             let goldenBezierPath = NSBezierPath()
             goldenBezierPath.moveToPoint(zPoint)
                 
-            let goldenYEnd : CGFloat = Ordering.sharedOrdering().rawValue * (startingX + dirtyRect.size.width)
-            let goldenEndPoint = CGPointMake(endingX, goldenYEnd)
+            let goldenYEnd : CGFloat = Ordering.sharedOrdering().rawValue * (dirtyRect.origin.x + dirtyRect.size.width)
+            let goldenEndPoint = CGPointMake(dirtyRect.origin.x + dirtyRect.width , goldenYEnd)
             goldenBezierPath.lineToPoint(goldenEndPoint)
             
             goldenBezierPath.lineWidth = PHILineWidth

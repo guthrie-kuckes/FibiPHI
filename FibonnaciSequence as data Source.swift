@@ -15,11 +15,11 @@ import AppKit
 // this extension is solely to give the functionality as a table view data source
 extension DasFibbonaciSequence : NSTableViewDataSource {
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return self.numbers.count
     }
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    public func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         
         if(tableColumn?.identifier == "TermsDivided") {
             return stringPointRepresentation[row]

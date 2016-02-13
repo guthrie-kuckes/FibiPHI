@@ -44,23 +44,23 @@ internal typealias Pair = (x: Int , y: Int)
 
 
 
-class DasFibbonaciSequence : NSObject {
+public class DasFibbonaciSequence : NSObject {
     
     
-    //number for the sequence to start with. there is a function to call to change this.
+    ///number for the sequence to start with. there is a function to call to change this.
     private (set) var startingNumber : Int = 1
     
     
-    //numbers in the sequence
+    ///numbers in the sequence
     private (set) var numbers = [Int]()
     
     
-    //a constant to note that the class does not yet support negative terms
+    ///a constant to note that the class does not yet support negative terms
     let previousToStartingNumber : Int = 0
 
     
     
-    /*
+    /**
         reflects the idea that in a fibonnaci sequence, as you go further and further along, a number in the fibonacci sequence divided
         by the previous number gets increasingly close to the golden ratio. 
     
@@ -69,7 +69,7 @@ class DasFibbonaciSequence : NSObject {
     private (set) var aproximationExpressions = [Pair]()
 
     
-    /*
+    /**
         contains essentially a textual representatio of every Pair in aproximationExpressions, in the form number/previous number
     */
     private (set) var stringPointRepresentation = [String]()
@@ -79,7 +79,7 @@ class DasFibbonaciSequence : NSObject {
     
     
     
-    //the number of numbers we have in the sequence currently
+    ///the number of numbers we have in the sequence currently
     var currentCount : Int {
         get {
             
@@ -88,7 +88,7 @@ class DasFibbonaciSequence : NSObject {
     }
     
     
-    //the initialization function. note that the only thing initialized is the number formatter used
+    ///the initialization function. note that the only thing initialized is the number formatter used
     override init () {
         
         smallNumberFormatter = NSNumberFormatter()
@@ -97,7 +97,7 @@ class DasFibbonaciSequence : NSObject {
     }
     
     
-    //a convenience initializer which immediatly calls realizeNumberOfTerms, to make sure it is filled out
+    ///a convenience initializer which immediatly calls realizeNumberOfTerms, to make sure it is filled out
     convenience init(computedTerms: Int) {
         
         self.init()
@@ -105,7 +105,7 @@ class DasFibbonaciSequence : NSObject {
     }
     
 
-    /* 
+    /**
         extends the sequence by numberOfTermsMore terms. this only for numbers, does not touch the string or pairs arrays
         because of this, it is only to be used by being called by realizeNumberOfTerms, which will take care of these things
         - as well it can not handle the first few terms in the sequence, a reason why you use realizeNumberOfTerms
@@ -136,7 +136,7 @@ class DasFibbonaciSequence : NSObject {
     }
 
     
-    /*
+    /**
         capable of changing the starting number of the sequence
         will make sure that the numbers array gets replaced to reflect the new reality, and will be replaced to its old length
         the stringPointRepresentation and aproximation expressions array will also be replaced
@@ -159,7 +159,7 @@ class DasFibbonaciSequence : NSObject {
     
     
     
-    /*
+    /**
         takes a number of terms that numbers array should have
         numbers array will have at least terms number of terms after calling it
         will also make sure that the aproximation expressions array and stringPointRepresentation arrays contain what they should for the new numbers array

@@ -8,7 +8,11 @@
 
 import Cocoa
 import XCTest
-import FibiPHI
+@testable import FibiPHI
+
+
+let testingNum = 100
+
 
 class FibiPHITests: XCTestCase {
     
@@ -39,6 +43,75 @@ class FibiPHITests: XCTestCase {
         }
     }
     
+    let rectValues : CGFloat  = 1_000
+    
+    func testLineGenerationPerformance() {
+        
+
+        let rect = CGRectMake(0,0,rectValues, rectValues)
+
+        
+        self.measureBlock { () -> Void in
+    
+            for _ in 0..<testingNum {
+            
+        
+                var horizontalStart = [CGPoint]()
+                var horizontalEnd = [CGPoint]()
+                
+                var verticalStart = [CGPoint]()
+                var verticalEnd = [CGPoint]()
+            
+            
+            var horizontalBezier = NSBezierPath()
+            var horizontalBold = NSBezierPath()
+            
+            var verticalBezier = NSBezierPath()
+            var verticalBold = NSBezierPath()
+            
+            let verticalGenerator =   getLineMaker(&verticalBezier,   boldPath: &verticalBold,   startPointArray: &verticalStart,   endPointArray: &verticalEnd,   theRect: rect, isVertical: true ,  coordinateDilation: 100.0)
+            let horizontalGenerator = getLineMaker(&horizontalBezier, boldPath: &horizontalBold, startPointArray: &horizontalStart, endPointArray: &horizontalEnd, theRect: rect, isVertical: false, coordinateDilation: 100.0)
+            verticalGenerator()
+            horizontalGenerator()
+                
+            }
+        }
+    }
+    
+    func testLineGenerationPerformanceMultithread() {
+        
+        
+        let rect = CGRectMake(0,0, rectValues, rectValues)
+
+        
+        self.measureBlock { () -> Void in
+            
+            for _ in 0..<testingNum {
+                
+                var horizontalStart = [CGPoint]()
+                var horizontalEnd = [CGPoint]()
+                
+                var verticalStart = [CGPoint]()
+                var verticalEnd = [CGPoint]()
+                
+                
+                var horizontalBezier = NSBezierPath()
+                var horizontalBold = NSBezierPath()
+                
+                var verticalBezier = NSBezierPath()
+                var verticalBold = NSBezierPath()
+                
+                let verticalGenerator =   getLineMaker(&verticalBezier,   boldPath: &verticalBold,   startPointArray: &verticalStart,   endPointArray: &verticalEnd,   theRect: rect, isVertical: true ,  coordinateDilation: 100.0)
+                let horizontalGenerator = getLineMaker(&horizontalBezier, boldPath: &horizontalBold, startPointArray: &horizontalStart, endPointArray: &horizontalEnd, theRect: rect, isVertical: false, coordinateDilation: 100.0)
+            
+                let graphMaker = NSOperationQueue()
+                graphMaker.addOperationWithBlock(verticalGenerator)
+                graphMaker.addOperationWithBlock(horizontalGenerator)
+                graphMaker.waitUntilAllOperationsAreFinished()
+            }
+        }
+
+    }
     
     /*
     func testPerformanceExample() {

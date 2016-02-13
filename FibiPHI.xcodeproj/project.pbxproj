@@ -16,6 +16,8 @@
 		6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */; };
 		EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
 		EE0983741C4B246D0070B7CE /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		EE1CD9831C6FBA440060E27C /* docs in Resources */ = {isa = PBXBuildFile; fileRef = EE1CD9821C6FBA440060E27C /* docs */; };
+		EE3E02461C6F0BBB0005FB64 /* graph view external funcs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02451C6F0BBB0005FB64 /* graph view external funcs.swift */; };
 		EE6AE2041C4B86F1001615DB /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
 		EE6AE2051C4B9304001615DB /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
 		EE85F74F1C67A7340027B1CD /* cConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85F74E1C67A7340027B1CD /* cConvenience.m */; };
@@ -63,6 +65,8 @@
 		6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibonacciSequence.swift; sourceTree = "<group>"; };
 		6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DasFibGraphView.swift; path = ../DasFibGraphView.swift; sourceTree = "<group>"; };
 		EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FibonnaciSequence as data Source.swift"; sourceTree = "<group>"; };
+		EE1CD9821C6FBA440060E27C /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
+		EE3E02451C6F0BBB0005FB64 /* graph view external funcs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "graph view external funcs.swift"; sourceTree = "<group>"; };
 		EE5CADEF1C4B259F00732FBE /* fibIdeas.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = fibIdeas.playground; sourceTree = SOURCE_ROOT; };
 		EE6AE1FB1C4B8326001615DB /* FibiPHI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FibiPHI-Bridging-Header.h"; sourceTree = "<group>"; };
 		EE6AE2031C4B86F1001615DB /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = /usr/local/lib/libgmp.a; sourceTree = "<absolute>"; };
@@ -112,6 +116,7 @@
 				EEAC76261C4C5297002463EF /* numberExplor */,
 				EEAC762C1C4C52DE002463EF /* special */,
 				6B6E33BA1A926A8800089FCA /* Products */,
+				EE1CD9821C6FBA440060E27C /* docs */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +135,7 @@
 			children = (
 				6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */,
 				6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */,
+				EE3E02451C6F0BBB0005FB64 /* graph view external funcs.swift */,
 				6B6E33BE1A926A8800089FCA /* AppDelegate.swift */,
 				6B6E33C01A926A8800089FCA /* Images.xcassets */,
 				6B6E33C21A926A8800089FCA /* MainMenu.xib */,
@@ -284,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE1CD9831C6FBA440060E27C /* docs in Resources */,
 				6B6E33C11A926A8800089FCA /* Images.xcassets in Resources */,
 				6B6E33C41A926A8800089FCA /* MainMenu.xib in Resources */,
 			);
@@ -303,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3E02461C6F0BBB0005FB64 /* graph view external funcs.swift in Sources */,
 				6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */,
 				6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */,
 				6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */,
