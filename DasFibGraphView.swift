@@ -15,8 +15,6 @@ import AppKit
 
 
 
-
-
 //the point at teh top left corner of the screen
 private let zPoint = CGPointMake(0, 0)
 
@@ -44,9 +42,11 @@ private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 17
 
 
 
-extension NSBezierPath {
+internal extension NSBezierPath {
     
-    func lineFrom(point: CGPoint, toPoint: CGPoint) {
+    
+    //moves the path to point, and then draws a line to toPoint 
+    func lineFrom(point point: CGPoint, toPoint: CGPoint) {
         
         self.moveToPoint(point)
         self.lineToPoint(toPoint)
@@ -55,8 +55,112 @@ extension NSBezierPath {
 
 
 
+//after a lot of work, I hit upon this algorithm, which gives the value, in uints that one small scale marker should represent
+internal func smallBarValueForScale(scale scale: CGFloat) -> CGFloat {
+    
+    let ten : CGFloat = 10.0
+    let theValue : CGFloat = pow(ten, 2.0 - ceil( log10( scale/2.5 ) ) ) / 5.0
+    return theValue
+}
 
-public class fibGraphView : NSView  {
+
+
+func getLineMaker(inout normalPath: NSBezierPath, inout boldPath: NSBezierPath, startPointArray: UnsafeMutablePointer<[CGPoint]>, endPointArray: UnsafeMutablePointer<[CGPoint]>, let theRect: CGRect, let isVertical: Bool, let coordinateDilation: CGFloat) -> () -> Void {
+    
+    
+    let startingValue : CGFloat
+    let endingValue : CGFloat
+    
+    let oppositeEnd : CGFloat
+    let oppositeStart : CGFloat
+    let currentProcess : (CGFloat) -> (CGPoint,  CGPoint)
+
+    if(isVertical) {
+        
+        
+        startingValue = theRect.origin.y
+        endingValue = startingValue + theRect.height
+        
+        oppositeEnd = theRect.origin.x + theRect.width
+        oppositeStart = theRect.origin.x
+
+        func verticalProcess(index: CGFloat) -> (CGPoint, CGPoint) {
+            
+            let startPoint = CGPointMake(index, startingValue)
+            let endPoint = CGPointMake(index, endingValue)
+            return (startPoint, endPoint)
+        }
+
+        
+        currentProcess = verticalProcess
+
+    } else {
+        
+        
+        startingValue = theRect.origin.x
+        endingValue = startingValue + theRect.width
+        
+        oppositeEnd = theRect.origin.y + theRect.height
+        oppositeStart = theRect.origin.y
+        
+        func horizontalProcess(index: CGFloat) -> ( CGPoint,  CGPoint) {
+            
+            let startPoint = CGPointMake(startingValue, index)
+            let endPoint = CGPointMake(endingValue, index)
+            return (startPoint, endPoint)
+        }
+        
+        currentProcess = horizontalProcess
+    }
+    
+    
+    
+    let smallBarValue : CGFloat = smallBarValueForScale(scale: coordinateDilation)
+    let smallBarPixels : CGFloat = smallBarValue  * coordinateDilation
+    let numberOfTimesAlreadyTesselated : CGFloat = floor(oppositeStart/smallBarPixels)
+    
+    
+    func toReturn() {
+        
+        var timesThroughLoop = 0
+        
+        for var Index : CGFloat = numberOfTimesAlreadyTesselated * smallBarPixels; Index < oppositeEnd; Index += smallBarPixels { //cg interval is thus the number of pixels which equals a scale of one.
+            
+            let (newStartPoint, newEndPoint) = currentProcess(Index)
+            
+            
+            if(timesThroughLoop % 5 == 0) {
+                
+                boldPath.lineFrom(point: newStartPoint, toPoint: newEndPoint)
+                
+            } else {
+                
+                normalPath.lineFrom(point: newStartPoint, toPoint: newEndPoint)
+            }
+            
+            let newWrappedBeginning = [newStartPoint]
+
+            
+            startPointArray.memory.append(newStartPoint) //add them to a new array too make the labeling easier
+            endPointArray.memory.append(newEndPoint)
+            
+            timesThroughLoop++
+            
+        }
+        
+        normalPath.lineWidth = graphLineWidth
+        boldPath.lineWidth = graphLineWidth + 1
+        
+        Swift.print("startPoint had \(startPointArray.memory.count) inside the func" )
+
+    }
+    
+    return toReturn
+}
+
+
+
+public class DASFibGraphView : NSView  {
     
 
     //the data that the graph is going to represent
@@ -81,6 +185,7 @@ public class fibGraphView : NSView  {
     
 
     //required if we want to have our own initializer.
+    //TODO: figure out why this keeps getting called on start up, and implement it truly
     required public init?(coder: NSCoder) {
         
         super.init(coder: coder)
@@ -127,16 +232,18 @@ public class fibGraphView : NSView  {
         
         Swift.print("doing rerendering (inside drawrect:)")
         
+        
+        
         let boundsPath = NSBezierPath(rect: self.bounds)
         NSColor.whiteColor().setFill()
         boundsPath.fill()
         
+        
+        
         //this is just the function that does something like graph paper
         let startingX : CGFloat = dirtyRect.origin.x //note they are all CGFloats
-        let startingY : CGFloat = dirtyRect.origin.y
         
         let endingX = startingX + dirtyRect.size.width
-        let endingY = startingY + dirtyRect.size.height
         
         
         
@@ -154,97 +261,36 @@ public class fibGraphView : NSView  {
         var verticalBold = NSBezierPath()
         
         
-        //for concurrency, the horizontal graph lines and vertical graph line making will be divided into seperate blocks to be executed concurrently on the same queue
-        func makeHorizontalBezierPath() -> Void {
-            
-            let numberOfTimesHorizontal : CGFloat = CGFloat( floor(startingY / coordinateDilation) ) //I think this is to get something on the exact line, in case the cg interval is not so ezact
-            
-            
-            var timesThroughLoop = 0
-            
-            for var Index : CGFloat = numberOfTimesHorizontal * coordinateDilation; Index < endingY ; Index += coordinateDilation { //cg interval is thus the number of pixels which equals a scale of one.
-                
-                let newStartPoint = CGPointMake(startingX, Index)
-                let newEndPoint = CGPointMake(endingX, Index)
-                
-                
-                if(timesThroughLoop % 5 == 0) {
-                    
-                    horizontalBold.lineFrom(newStartPoint, toPoint: newEndPoint)
-                    
-                } else {
-                    
-                    horizontalBezier.lineFrom(newStartPoint, toPoint: newEndPoint)
-                }
-                
-                horizontalStart.append(newStartPoint) //add them to a new array too make the labeling easier
-                horizontalEnd.append(newEndPoint)
-                
-                timesThroughLoop++
-            }
-            
-            horizontalBezier.lineWidth = graphLineWidth
-            horizontalBold.lineWidth = graphLineWidth + 1
-        }
+
+        let verticalGenerator =   getLineMaker(&verticalBezier,   boldPath: &verticalBold,   startPointArray: &verticalStart,   endPointArray: &verticalEnd,   theRect: dirtyRect, isVertical: true ,  coordinateDilation: self.coordinateDilation)
+        let horizontalGenerator = getLineMaker(&horizontalBezier, boldPath: &horizontalBold, startPointArray: &horizontalStart, endPointArray: &horizontalEnd, theRect: dirtyRect, isVertical: false, coordinateDilation: self.coordinateDilation)
         
-        
-        func makeVerticalBezierPath() -> Void {
-            
-            let numberOfTimesVertical : CGFloat = floor(startingY / coordinateDilation)
-            
-            var timesThroughLoop = 0
-            
-            for var Index : CGFloat = numberOfTimesVertical * coordinateDilation ; Index < endingX ; Index += coordinateDilation {
-                
-                let newStartPoint = CGPointMake(Index, startingY)
-                let newEndPoint = CGPointMake(Index, endingY)
-                
-                
-                if(timesThroughLoop % 5 == 0) {
-                    
-                    verticalBold.lineFrom(newStartPoint, toPoint: newEndPoint)
-                } else {
-                    
-                    verticalBezier.lineFrom(newStartPoint, toPoint: newEndPoint)
-                }
-                
-                verticalStart.append(newStartPoint)
-                verticalEnd.append(newEndPoint)
-                
-                timesThroughLoop++
-            }
-            
-            
-            verticalBezier.lineWidth = graphLineWidth
-            verticalBold.lineWidth = graphLineWidth + 1
-        }
-        
+        let graphMaker = NSOperationQueue()
+        graphMaker.addOperationWithBlock(verticalGenerator)
+        graphMaker.addOperationWithBlock(horizontalGenerator)
+        graphMaker.waitUntilAllOperationsAreFinished()
 
         
-        if(coordinateDilation > 0.9) { //this creates the effect of having zommed out of everything
-
-            graphMaker.addOperationWithBlock(makeHorizontalBezierPath)
-            graphMaker.addOperationWithBlock(makeVerticalBezierPath)
-            graphMaker.waitUntilAllOperationsAreFinished()
+        Swift.print("horizontal bold had \(horizontalBold.elementCount), vertical bold had \(verticalBold.elementCount)")
+        Swift.print("horizontalStart had \(horizontalStart.count) outside")
+        
+        ourGrey.setStroke()
+        horizontalBezier.stroke()
+        verticalBezier.stroke()
             
-            ourGrey.setStroke()
-            horizontalBezier.stroke()
-            verticalBezier.stroke()
-            
-            NSColor.blackColor().setStroke()
-            horizontalBold.stroke()
-            verticalBold.stroke()
-        }
+        NSColor.blackColor().setStroke()
+        horizontalBold.stroke()
+        verticalBold.stroke()
+        
+        
         
 
         //done with drawing graph lines
         //start drawing axis labels (axes themselves not drawn truly)
         
         
-        let linesPerLabel = Int( ceil( 100.0 / coordinateDilation) ) //the effect is to have labels about every 100 px
-        
 
-        for var Iterator = 0 ; Iterator < horizontalStart.count ; Iterator += linesPerLabel {
+        for var Iterator = 0 ; Iterator < horizontalStart.count ; Iterator += 5 {
             
             let actualNumber = horizontalStart[Iterator].y
             let calibratedLabel : CGFloat = floor(actualNumber / coordinateDilation)
@@ -257,7 +303,7 @@ public class fibGraphView : NSView  {
         }
         
         
-        for var Iterator = 0 ; Iterator < verticalStart.count ; Iterator += linesPerLabel {
+        for var Iterator = 0 ; Iterator < verticalStart.count ; Iterator += 5 {
             
             let actualNumber = verticalStart[Iterator].x
             let calibratedLabel = floor(actualNumber / coordinateDilation)

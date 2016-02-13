@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     @IBOutlet weak var PHIreciprocalMenuItem: NSMenuItem!
     
     //the custom view graphing the fibonnacci sequence
-    @IBOutlet weak var fibGraphingView: fibGraphView!
+    @IBOutlet weak var fibGraphingView: DASFibGraphView!
 
     //where you enter the starting number b of the sequence
     @IBOutlet weak var startingNumberField: NSTextField!
