@@ -192,7 +192,7 @@
 /* Begin PBXLegacyTarget section */
 		EEEFABFE1C7164A200BF0758 /* docs */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--min-acl internal -a Guthrie Kuckes";
+			buildArgumentsString = "--min-acl internal -a Guthrie_Kuckes";
 			buildConfigurationList = EEEFABFF1C7164A200BF0758 /* Build configuration list for PBXLegacyTarget "docs" */;
 			buildPhases = (
 			);
