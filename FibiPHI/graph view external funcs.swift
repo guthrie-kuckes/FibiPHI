@@ -138,15 +138,16 @@ internal func getLineMaker(inout normalPath: NSBezierPath, inout boldPath: NSBez
 
 
 /**
-    The formatter for scale labels on the graph, controlling how numbers look
+    The formatter for scale labels on the graph for very large or small numbers,
+    controlling how numbers look
 */
-private let GraphViewLabelFormatter = makeGraphViewLabelFormatter()
+private let GraphViewExrtremeLabelFormatter = makeGraphViewExtremeLabelFormatter()
 
 
 /**
     makes the number formatter for the scale labels, used when they are very large or small
 */
-private func makeGraphViewLabelFormatter() -> NSNumberFormatter {
+private func makeGraphViewExtremeLabelFormatter() -> NSNumberFormatter {
     
     let ourFormatter = NSNumberFormatter()
     ourFormatter.usesSignificantDigits = true
@@ -159,8 +160,29 @@ private func makeGraphViewLabelFormatter() -> NSNumberFormatter {
 
 
 /**
+    The formatter for scale labels on the graph, used for numbers that are not very 
+    small, and not very large. controls how the numbers look, and rounds so that 
+    floating point errors (which seem to happen more often than they should?) don't
+    show through
+*/
+private let GraphViewMiddlingLabelFormatter = makeGraphViewMiddlingLabelFormatter()
+
+
+/**
+    makes the formatter for scale labels when the numbers for the labels are neither very small nor very large.
+*/
+private func makeGraphViewMiddlingLabelFormatter() -> NSNumberFormatter {
+    
+    let thisFormatter = NSNumberFormatter()
+    thisFormatter.minimumFractionDigits = 2
+    
+    return thisFormatter
+}
+
+
+/**
     Does all necessary number formatting for a an axis label. 
-    - if less than 10,000 or greater or equal to 0.001, will return a decimal approximation
+    - if less than 10,000 or greater or equal to 0.001, will return a formatted decimal, rounding to about the hundreds place
     - otherwise, will return a scientific notation formatted string with at most five digits dignificant figures, at least three
  
     - parameter labelValue: the number to format
@@ -168,12 +190,12 @@ private func makeGraphViewLabelFormatter() -> NSNumberFormatter {
 */
 internal func GraphViewFormatLabel(labelValue: CGFloat) -> NSString {
     
-    if(labelValue < 10_000.0 && labelValue >= 0.001) {
+    if( (labelValue < 10_000.0 && labelValue >= 0.01) || labelValue == 0.0) {
         
-        return "\(labelValue)"
+        return GraphViewMiddlingLabelFormatter.stringFromNumber(labelValue)!
     }
     
-    return GraphViewLabelFormatter.stringFromNumber(labelValue)!
+    return GraphViewExrtremeLabelFormatter.stringFromNumber(labelValue)!
 }
 
 

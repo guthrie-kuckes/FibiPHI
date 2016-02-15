@@ -22,7 +22,7 @@ private let zPoint = CGPointMake(0, 0)
 
 //how we draw the graph scale labels.
 // TODO: Make the labels look nicer
-private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() , NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
+private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() ] //, NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
 
 
 ///the width of the scale lines in the graph
@@ -42,7 +42,8 @@ private let PHILineWidth : CGFloat = 3.0;
 private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 171/255, alpha: 1.0  )
 
 
-
+///Slightly extended NSBezierPath to save myself a few lines of code, making a method for a few calls I
+///often do in succession
 internal extension NSBezierPath {
     
     

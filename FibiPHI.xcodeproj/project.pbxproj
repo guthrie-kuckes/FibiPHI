@@ -197,6 +197,7 @@
 				6B6E33B51A926A8700089FCA /* Sources */,
 				6B6E33B61A926A8700089FCA /* Frameworks */,
 				6B6E33B71A926A8700089FCA /* Resources */,
+				EEEFABFD1C7160D600BF0758 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -304,6 +305,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EEEFABFD1C7160D600BF0758 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "jazzy --min-acl internal";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6B6E33B51A926A8700089FCA /* Sources */ = {
