@@ -189,6 +189,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		EEEFABFE1C7164A200BF0758 /* docs */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "--min-acl internal -a Guthrie Kuckes";
+			buildConfigurationList = EEEFABFF1C7164A200BF0758 /* Build configuration list for PBXLegacyTarget "docs" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/jazzy;
+			buildWorkingDirectory = "/Users/valence/Documents/serverT_code/unified development/swift/osx/FibiPHI";
+			dependencies = (
+			);
+			name = docs;
+			passBuildSettingsInEnvironment = 1;
+			productName = docs;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		6B6E33B81A926A8700089FCA /* FibiPHI */ = {
 			isa = PBXNativeTarget;
@@ -197,7 +214,6 @@
 				6B6E33B51A926A8700089FCA /* Sources */,
 				6B6E33B61A926A8700089FCA /* Frameworks */,
 				6B6E33B71A926A8700089FCA /* Resources */,
-				EEEFABFD1C7160D600BF0758 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -264,6 +280,9 @@
 					EEAC76241C4C5297002463EF = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					EEEFABFE1C7164A200BF0758 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 6B6E33B41A926A8700089FCA /* Build configuration list for PBXProject "FibiPHI" */;
@@ -282,6 +301,7 @@
 				6B6E33B81A926A8700089FCA /* FibiPHI */,
 				6B6E33C81A926A8800089FCA /* FibiPHITests */,
 				EEAC76241C4C5297002463EF /* numberExplor */,
+				EEEFABFE1C7164A200BF0758 /* docs */,
 			);
 		};
 /* End PBXProject section */
@@ -305,22 +325,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		EEEFABFD1C7160D600BF0758 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "jazzy --min-acl internal";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6B6E33B51A926A8700089FCA /* Sources */ = {
@@ -582,6 +586,32 @@
 			};
 			name = Release;
 		};
+		EEEFAC001C7164A200BF0758 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EEEFAC011C7164A200BF0758 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -620,6 +650,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EEEFABFF1C7164A200BF0758 /* Build configuration list for PBXLegacyTarget "docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEEFAC001C7164A200BF0758 /* Debug */,
+				EEEFAC011C7164A200BF0758 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
