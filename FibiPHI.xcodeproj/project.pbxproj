@@ -12,17 +12,17 @@
 		6B6E33C11A926A8800089FCA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C01A926A8800089FCA /* Images.xcassets */; };
 		6B6E33C41A926A8800089FCA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C21A926A8800089FCA /* MainMenu.xib */; };
 		6B6E33D01A926A8800089FCA /* FibiPHITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */; };
-		6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		6B6E33DA1A926AD500089FCA /* DASFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */; };
 		6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */; };
 		EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
-		EE0983741C4B246D0070B7CE /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		EE0983741C4B246D0070B7CE /* DASFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */; };
 		EE1CD9831C6FBA440060E27C /* docs in Resources */ = {isa = PBXBuildFile; fileRef = EE1CD9821C6FBA440060E27C /* docs */; };
 		EE3E02461C6F0BBB0005FB64 /* graph view external funcs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E02451C6F0BBB0005FB64 /* graph view external funcs.swift */; };
 		EE6AE2041C4B86F1001615DB /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
 		EE6AE2051C4B9304001615DB /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6AE2031C4B86F1001615DB /* libgmp.a */; };
 		EE85F74F1C67A7340027B1CD /* cConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85F74E1C67A7340027B1CD /* cConvenience.m */; };
 		EEAC76281C4C5297002463EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAC76271C4C5297002463EF /* main.m */; };
-		EEAC762D1C4C5336002463EF /* DasFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */; };
+		EEAC762D1C4C5336002463EF /* DASFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */; };
 		EEAC762E1C4C533A002463EF /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
 		EEAC762F1C4C533B002463EF /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
 		EEAC76341C4C5472002463EF /* orderHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */; };
@@ -62,7 +62,7 @@
 		6B6E33C91A926A8800089FCA /* FibiPHITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FibiPHITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6E33CE1A926A8800089FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibiPHITests.swift; sourceTree = "<group>"; };
-		6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DasFibonacciSequence.swift; sourceTree = "<group>"; };
+		6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DASFibonacciSequence.swift; sourceTree = "<group>"; };
 		6B6E33DB1A926B3300089FCA /* DasFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DasFibGraphView.swift; path = ../DasFibGraphView.swift; sourceTree = "<group>"; };
 		EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FibonnaciSequence as data Source.swift"; sourceTree = "<group>"; };
 		EE1CD9821C6FBA440060E27C /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
@@ -74,6 +74,7 @@
 		EE85F7501C67A74A0027B1CD /* cConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cConvenience.h; sourceTree = "<group>"; };
 		EEAC76251C4C5297002463EF /* numberExplor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = numberExplor; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAC76271C4C5297002463EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EEEFAC021C7403F800BF0758 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +110,7 @@
 			children = (
 				EE85F74E1C67A7340027B1CD /* cConvenience.m */,
 				EE85F7501C67A74A0027B1CD /* cConvenience.h */,
-				6B6E33D91A926AD500089FCA /* DasFibonacciSequence.swift */,
+				6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */,
 				EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */,
 				6B6E33BB1A926A8800089FCA /* FibiPHI */,
 				6B6E33CC1A926A8800089FCA /* FibiPHITests */,
@@ -180,6 +181,7 @@
 		EEAC762C1C4C52DE002463EF /* special */ = {
 			isa = PBXGroup;
 			children = (
+				EEEFAC021C7403F800BF0758 /* README.md */,
 				EE6AE1FB1C4B8326001615DB /* FibiPHI-Bridging-Header.h */,
 				EE6AE2031C4B86F1001615DB /* libgmp.a */,
 				EE5CADEF1C4B259F00732FBE /* fibIdeas.playground */,
@@ -192,7 +194,7 @@
 /* Begin PBXLegacyTarget section */
 		EEEFABFE1C7164A200BF0758 /* docs */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--min-acl internal -a Guthrie_Kuckes";
+			buildArgumentsString = "--min-acl internal -a \"Guthrie Kuckes\" --docset-icon /Users/valence/Documents/serverT_code/unified\\ development/swift/osx/FibiPHI/FibiPHI/Images.xcassets/AppIcon.appiconset/1024.png -m FibiPHI";
 			buildConfigurationList = EEEFABFF1C7164A200BF0758 /* Build configuration list for PBXLegacyTarget "docs" */;
 			buildPhases = (
 			);
@@ -332,7 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE3E02461C6F0BBB0005FB64 /* graph view external funcs.swift in Sources */,
-				6B6E33DA1A926AD500089FCA /* DasFibonacciSequence.swift in Sources */,
+				6B6E33DA1A926AD500089FCA /* DASFibonacciSequence.swift in Sources */,
 				6B6E33DC1A926B3300089FCA /* DasFibGraphView.swift in Sources */,
 				6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */,
 				EE85F74F1C67A7340027B1CD /* cConvenience.m in Sources */,
@@ -345,7 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE0983741C4B246D0070B7CE /* DasFibonacciSequence.swift in Sources */,
+				EE0983741C4B246D0070B7CE /* DASFibonacciSequence.swift in Sources */,
 				6B6E33D01A926A8800089FCA /* FibiPHITests.swift in Sources */,
 				EEAC762E1C4C533A002463EF /* FibonnaciSequence as data Source.swift in Sources */,
 				EEAC76351C4C5473002463EF /* orderHandling.swift in Sources */,
@@ -356,7 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEAC762D1C4C5336002463EF /* DasFibonacciSequence.swift in Sources */,
+				EEAC762D1C4C5336002463EF /* DASFibonacciSequence.swift in Sources */,
 				EEAC76281C4C5297002463EF /* main.m in Sources */,
 				EEAC762F1C4C533B002463EF /* FibonnaciSequence as data Source.swift in Sources */,
 				EEAC76341C4C5472002463EF /* orderHandling.swift in Sources */,
@@ -483,10 +485,10 @@
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obsidian.net.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -507,10 +509,10 @@
 				INFOPLIST_FILE = FibiPHI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obsidian.net.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 			};
 			name = Release;
@@ -534,6 +536,7 @@
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obsidian.net.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.11;
 				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FibiPHI.app/Contents/MacOS/FibiPHI";
 			};
@@ -554,6 +557,7 @@
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obsidian.net.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.11;
 				SWIFT_OBJC_BRIDGING_HEADER = "FibiPHI-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FibiPHI.app/Contents/MacOS/FibiPHI";
 			};
@@ -658,6 +662,7 @@
 				EEEFAC011C7164A200BF0758 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

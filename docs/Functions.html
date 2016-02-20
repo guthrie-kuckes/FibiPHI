@@ -13,12 +13,12 @@
     <a title="Functions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (38% documented)</p>
+        <p><a href="index.html">FibiPHI Docs</a> (83% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="index.html"> Reference</a>
+        <a href="index.html">FibiPHI Reference</a>
         <img id="carat" src="img/carat.png" />
         Functions  Reference
       </p>
@@ -36,7 +36,7 @@
                 <a href="Classes/DASFibGraphView.html">DASFibGraphView</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DasFibbonaciSequence.html">DasFibbonaciSequence</a>
+                <a href="Classes/DASFibbonaciSequence.html">DASFibbonaciSequence</a>
               </li>
             </ul>
           </li>
@@ -90,6 +90,14 @@
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:F7FibiPHI21smallBarValueForScaleFT5scaleV12CoreGraphics7CGFloat_S1_">smallBarValueForScale(scale:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7FibiPHI4Pair">Pair</a>
               </li>
             </ul>
           </li>
@@ -360,7 +368,66 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Deals with the fact that the x/y of a point in the graph should be switched depending on the value
+of the golden ratio which is used. Uses the shared Ordering</p>
+
+<p><li><p>parameters:</p></p>
+
+<p><ul>
+<li>x: What may or may not be the x coordinate of the point</li>
+<li>y: What may or may not be the y coordinate of the point</li>
+</ul></li>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p>Ordering</p></p>
+
+<p></div></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">internal</span> <span class="kd">func</span> <span class="nf">autoReversePointMake</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>x</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>What may or may not be the x coordinate of the point</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>y</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>What may or may not be the y coordinate of the point</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A point made in the correct order, according to the singleton Ordering instance</p>
 
                       </div>
                     </section>
@@ -379,8 +446,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>same diff but for the table. could probably be replaced by a generic somehow</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">internal</span> <span class="kd">func</span> <span class="nf">orderReverseDivision</span><span class="p">(</span><span class="nv">divided</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">divisor</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -390,7 +465,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Guthrie_Kuckes</a>. All rights reserved. (Last updated: 2016-02-14)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Guthrie Kuckes</a>. All rights reserved. (Last updated: 2016-02-20)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

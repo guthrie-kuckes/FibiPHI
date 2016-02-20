@@ -9,15 +9,35 @@
 import Foundation
 
 
+/**
+    The singleton enumeration instance for the application
+*/
 private var realSharedOrdering : Ordering? = nil
 
 
-enum Ordering : CGFloat {
+/**
+    Essentially, takes care of switching between PHI and its reciprocal
+    - really it is a sort of stopgap solution to the problem
+    - realize that to have in points a ratio that is PHI, bigger numbers must be divided by smaller numbers
+    whereas to get a ratio that is its reciprocal, smaller numbers must be divided by bigger numbers. Instead of having a bunch
+    of procedural calls, I decided to have this class.
+ 
+    - note: Is effectively a singleton enumeration
+*/
+internal enum Ordering : CGFloat {
     
+    /**
+        When we the application is using the reciprocal of the golden ratio
+    */
     case PHI = 0.6180339887498948482045868343656381177203091798057628621
+    
+    
+    /**
+        When the application is using the golden ratio.
+    */
     case PHI_1 = 1.6180339887498948482045868343656381177203091798057628621
     
-    //gives the opposite. sensicle for I will be switching back and forth between the two
+    ///Switches the singleton enumeration to the opposite value. sensible for the applcation will be switching back and forth between the two
     static func opp() {
         if realSharedOrdering == PHI {
             realSharedOrdering = PHI_1
@@ -26,6 +46,9 @@ enum Ordering : CGFloat {
         }
     }
     
+    /**
+        Returns the singleton enumeration instance, initializes it if necessary.
+    */
     static func sharedOrdering() -> Ordering {
         
         if realSharedOrdering == nil {
@@ -37,8 +60,21 @@ enum Ordering : CGFloat {
     }
 }
 
-//this is a shortCut to make all my old code compatible to deal with different PHIs easily
-func autoReversePointMake(x: CGFloat, y: CGFloat) -> CGPoint {
+
+
+/**
+    Deals with the fact that the x/y of a point in the graph should be switched depending on the value
+    of the golden ratio which is used. Uses the shared Ordering
+    
+    - parameters:
+        - x: What may or may not be the x coordinate of the point
+        - y: What may or may not be the y coordinate of the point
+ 
+    - returns: A point made in the correct order, according to the singleton Ordering instance
+ 
+    - seeAlso: Ordering
+*/
+internal func autoReversePointMake(x: CGFloat, y: CGFloat) -> CGPoint {
     
     if (Ordering.sharedOrdering() == .PHI_1) {
         return CGPointMake(x, y)
@@ -48,8 +84,8 @@ func autoReversePointMake(x: CGFloat, y: CGFloat) -> CGPoint {
     
 }
 
-//same diff but for the table. could probably be replaced by a generic somehow
-func orderReverseDivision(divided: CGFloat, divisor: CGFloat) -> CGFloat {
+///same diff but for the table. could probably be replaced by a generic somehow
+internal func orderReverseDivision(divided: CGFloat, divisor: CGFloat) -> CGFloat {
     
     if (Ordering.sharedOrdering() == .PHI_1) {
         return divided/divisor

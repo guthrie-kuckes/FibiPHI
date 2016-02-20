@@ -10,6 +10,7 @@ import Cocoa
 import AppKit
 
 
+///The app delegeate. Initialized on launch
 var DasSharedDelegate : AppDelegate? = nil
 
 
@@ -21,26 +22,26 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     
     @IBOutlet weak var window: NSWindow!
 
-    //shows us wether we are using PHI or its reciprocal
+    ///Shows the user wether they are using PHI or its reciprocal
     @IBOutlet weak var phiValueText: NSTextField!
     
-    //the menu item to click to switch between PHI and its repciprocal
+    ///the menu item to click to switch between PHI and its repciprocal
     @IBOutlet weak var PHIreciprocalMenuItem: NSMenuItem!
     
-    //the custom view graphing the fibonnacci sequence
+    ///the custom view graphing the fibonnacci sequence
     @IBOutlet weak var fibGraphingView: DASFibGraphView!
 
-    //where you enter the starting number b of the sequence
+    ///where you enter the starting number b of the sequence
     @IBOutlet weak var startingNumberField: NSTextField!
     
-    //one of the ways to change the graph scale
+    ///one of the ways to change the graph scale
     @IBOutlet weak var ScaleSlider: NSSlider!
     
-    //shows with numbers how we are getting closer to PHI
+    ///shows with numbers how we are getting closer to PHI
     @IBOutlet weak var resiudalTableView: NSTableView!
     
     
-    //what happens when you loick on the menu item to switch between phi and its reciprocal
+    ///what happens when the user clicks on the menu item to switch between phi and its reciprocal
     @IBAction func wantsPHIreciprocal(sender: AnyObject) {
         
         print("reciprocation desired")
@@ -81,9 +82,10 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     }
 
     
+    ///Where the user clicks to get my copyright information, when the program was written and things like that.
     @IBOutlet weak var aboutMenuItem: NSMenuItem!
     
-    
+    ///The code which makes the application show the copyright and such information when the "about" menu item is clicked
     @IBAction func aboutDocAction(sender: AnyObject) {
         
                 let aboutOptions = ["Copyright" : "Copyright 2016 Guthrie Kuckes" , "Version" : "1.0.0" , "Credits" : NSAttributedString(string: "All code in is in Apple's swift language, and the program was originally written in 2015 for a school project") ]

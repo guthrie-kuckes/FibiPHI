@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DasFibbonaciSequence Class Reference</title>
+    <title>DASFibbonaciSequence Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,18 +10,18 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/DasFibbonaciSequence" class="dashAnchor"></a>
-    <a title="DasFibbonaciSequence Class Reference"></a>
+    <a name="//apple_ref/swift/Class/DASFibbonaciSequence" class="dashAnchor"></a>
+    <a title="DASFibbonaciSequence Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (38% documented)</p>
+        <p><a href="../index.html">FibiPHI Docs</a> (83% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html"> Reference</a>
+        <a href="../index.html">FibiPHI Reference</a>
         <img id="carat" src="../img/carat.png" />
-        DasFibbonaciSequence Class Reference
+        DASFibbonaciSequence Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -37,7 +37,7 @@
                 <a href="../Classes/DASFibGraphView.html">DASFibGraphView</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DasFibbonaciSequence.html">DasFibbonaciSequence</a>
+                <a href="../Classes/DASFibbonaciSequence.html">DASFibbonaciSequence</a>
               </li>
             </ul>
           </li>
@@ -94,13 +94,27 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:7FibiPHI4Pair">Pair</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>DasFibbonaciSequence</h1>
-            <p>Undocumented</p>
+            <h1>DASFibbonaciSequence</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DASFibbonaciSequence</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Represents the fibonnaci sequence. Originally menant to be graphed.</p>
 
           </section>
           <section class="section task-group-section">
@@ -109,9 +123,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence14startingNumberSi"></a>
+                    <a name="/s:vC7FibiPHI20DASFibbonaciSequence14startingNumberSi"></a>
                     <a name="//apple_ref/swift/Property/startingNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence14startingNumberSi">startingNumber</a>
+                    <a class="token" href="#/s:vC7FibiPHI20DASFibbonaciSequence14startingNumberSi">startingNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -136,9 +150,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence7numbersGSaSi_"></a>
+                    <a name="/s:vC7FibiPHI20DASFibbonaciSequence7numbersGSaSi_"></a>
                     <a name="//apple_ref/swift/Property/numbers" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence7numbersGSaSi_">numbers</a>
+                    <a class="token" href="#/s:vC7FibiPHI20DASFibbonaciSequence7numbersGSaSi_">numbers</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -163,9 +177,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence24previousToStartingNumberSi"></a>
+                    <a name="/s:vC7FibiPHI20DASFibbonaciSequence24previousToStartingNumberSi"></a>
                     <a name="//apple_ref/swift/Property/previousToStartingNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence24previousToStartingNumberSi">previousToStartingNumber</a>
+                    <a class="token" href="#/s:vC7FibiPHI20DASFibbonaciSequence24previousToStartingNumberSi">previousToStartingNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -173,7 +187,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>a constant to note that the class does not yet support negative terms</p>
+                        <p>A constant to note that the class does not yet support negative terms. As well, note that the Fibonnacci sequence
+is determined by two numbers. Usually, this is one and zero. In the current version of the application, the user
+can change the starting <q>1</q> to any natural number. But the application does not yet support changing the <q>0</q>, 
+which is what this constant represents.</p>
 
                       </div>
                       <div class="declaration">
@@ -190,9 +207,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence23aproximationExpressionsGSaT1xSi1ySi__"></a>
+                    <a name="/s:vC7FibiPHI20DASFibbonaciSequence23aproximationExpressionsGSaT1xSi1ySi__"></a>
                     <a name="//apple_ref/swift/Property/aproximationExpressions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence23aproximationExpressionsGSaT1xSi1ySi__">aproximationExpressions</a>
+                    <a class="token" href="#/s:vC7FibiPHI20DASFibbonaciSequence23aproximationExpressionsGSaT1xSi1ySi__">aproximationExpressions</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -220,9 +237,9 @@ by the previous number gets increasingly close to the golden ratio. </p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence25stringPointRepresentationGSaSS_"></a>
+                    <a name="/s:vC7FibiPHI20DASFibbonaciSequence25stringPointRepresentationGSaSS_"></a>
                     <a name="//apple_ref/swift/Property/stringPointRepresentation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence25stringPointRepresentationGSaSS_">stringPointRepresentation</a>
+                    <a class="token" href="#/s:vC7FibiPHI20DASFibbonaciSequence25stringPointRepresentationGSaSS_">stringPointRepresentation</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -247,28 +264,9 @@ by the previous number gets increasingly close to the golden ratio. </p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence20smallNumberFormatterCSo17NSNumberFormatter"></a>
-                    <a name="//apple_ref/swift/Property/smallNumberFormatter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence20smallNumberFormatterCSo17NSNumberFormatter">smallNumberFormatter</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC7FibiPHI20DasFibbonaciSequence12currentCountSi"></a>
+                    <a name="/s:vC7FibiPHI20DASFibbonaciSequence12currentCountSi"></a>
                     <a name="//apple_ref/swift/Property/currentCount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC7FibiPHI20DasFibbonaciSequence12currentCountSi">currentCount</a>
+                    <a class="token" href="#/s:vC7FibiPHI20DASFibbonaciSequence12currentCountSi">currentCount</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -293,36 +291,9 @@ by the previous number gets increasingly close to the golden ratio. </p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7FibiPHI20DasFibbonaciSequencecFMS0_FT_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI20DasFibbonaciSequencecFMS0_FT_S0_">init()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>the initialization function. note that the only thing initialized is the number formatter used</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">override</span> <span class="nf">init</span> <span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC7FibiPHI20DasFibbonaciSequencecFMS0_FT13computedTermsSi_S0_"></a>
+                    <a name="/s:FC7FibiPHI20DASFibbonaciSequencecFMS0_FT13computedTermsSi_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(computedTerms:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI20DasFibbonaciSequencecFMS0_FT13computedTermsSi_S0_">init(computedTerms:)</a>
+                    <a class="token" href="#/s:FC7FibiPHI20DASFibbonaciSequencecFMS0_FT13computedTermsSi_S0_">init(computedTerms:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -347,9 +318,9 @@ by the previous number gets increasingly close to the golden ratio. </p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7FibiPHI20DasFibbonaciSequence20changeStartingNumberFS0_FSiT_"></a>
+                    <a name="/s:FC7FibiPHI20DASFibbonaciSequence20changeStartingNumberFS0_FSiT_"></a>
                     <a name="//apple_ref/swift/Method/changeStartingNumber(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI20DasFibbonaciSequence20changeStartingNumberFS0_FSiT_">changeStartingNumber(_:)</a>
+                    <a class="token" href="#/s:FC7FibiPHI20DASFibbonaciSequence20changeStartingNumberFS0_FSiT_">changeStartingNumber(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -376,9 +347,9 @@ the stringPointRepresentation and aproximation expressions array will also be re
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7FibiPHI20DasFibbonaciSequence20realizeNumberOfTermsFS0_FSiT_"></a>
+                    <a name="/s:FC7FibiPHI20DASFibbonaciSequence20realizeNumberOfTermsFS0_FSiT_"></a>
                     <a name="//apple_ref/swift/Method/realizeNumberOfTerms(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI20DasFibbonaciSequence20realizeNumberOfTermsFS0_FSiT_">realizeNumberOfTerms(_:)</a>
+                    <a class="token" href="#/s:FC7FibiPHI20DASFibbonaciSequence20realizeNumberOfTermsFS0_FSiT_">realizeNumberOfTerms(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -409,9 +380,9 @@ will also make sure that the aproximation expressions array and stringPointRepre
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7FibiPHI20DasFibbonaciSequence23numberOfRowsInTableViewFS0_FCSo11NSTableViewSi"></a>
+                    <a name="/s:FC7FibiPHI20DASFibbonaciSequence23numberOfRowsInTableViewFS0_FCSo11NSTableViewSi"></a>
                     <a name="//apple_ref/swift/Method/numberOfRowsInTableView(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI20DasFibbonaciSequence23numberOfRowsInTableViewFS0_FCSo11NSTableViewSi">numberOfRowsInTableView(_:)</a>
+                    <a class="token" href="#/s:FC7FibiPHI20DASFibbonaciSequence23numberOfRowsInTableViewFS0_FCSo11NSTableViewSi">numberOfRowsInTableView(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -419,8 +390,16 @@ will also make sure that the aproximation expressions array and stringPointRepre
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Tells the table to display all the numbers in the fibonnaci sequence that we have computed</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">numberOfRowsInTableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">NSTableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -428,9 +407,9 @@ will also make sure that the aproximation expressions array and stringPointRepre
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7FibiPHI20DasFibbonaciSequence9tableViewFS0_FTCSo11NSTableView25objectValueForTableColumnGSqCSo13NSTableColumn_3rowSi_GSqPSs9AnyObject__"></a>
+                    <a name="/s:FC7FibiPHI20DASFibbonaciSequence9tableViewFS0_FTCSo11NSTableView25objectValueForTableColumnGSqCSo13NSTableColumn_3rowSi_GSqPSs9AnyObject__"></a>
                     <a name="//apple_ref/swift/Method/tableView(_:objectValueForTableColumn:row:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI20DasFibbonaciSequence9tableViewFS0_FTCSo11NSTableView25objectValueForTableColumnGSqCSo13NSTableColumn_3rowSi_GSqPSs9AnyObject__">tableView(_:objectValueForTableColumn:row:)</a>
+                    <a class="token" href="#/s:FC7FibiPHI20DASFibbonaciSequence9tableViewFS0_FTCSo11NSTableView25objectValueForTableColumnGSqCSo13NSTableColumn_3rowSi_GSqPSs9AnyObject__">tableView(_:objectValueForTableColumn:row:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -438,8 +417,16 @@ will also make sure that the aproximation expressions array and stringPointRepre
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns appropriate string values for both collums of the table view in the application.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">NSTableView</span><span class="p">,</span> <span class="n">objectValueForTableColumn</span> <span class="nv">tableColumn</span><span class="p">:</span> <span class="kt">NSTableColumn</span><span class="p">?,</span> <span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyObject</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -449,7 +436,7 @@ will also make sure that the aproximation expressions array and stringPointRepre
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Guthrie_Kuckes</a>. All rights reserved. (Last updated: 2016-02-14)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Guthrie Kuckes</a>. All rights reserved. (Last updated: 2016-02-20)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

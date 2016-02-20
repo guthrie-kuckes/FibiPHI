@@ -20,20 +20,21 @@ import Foundation //realize that ths is a pretty basic, abstract, class
 
 
 
-//absurd amount of digits of the golden ratio. some of these, of course, will be chopped
+///Absurd amount of digits of the golden ratio.
 public let PHI : CGFloat = 0.6180339887498948482045868343656381177203091798057628621
 
-//just global contant for golden ratio plus one since my table is fudged and I need this to get residual
-let PHI_P1 : CGFloat = 1.6180339887498948482045868343656381177203091798057628621
+///Just a global constant for the golden ratio plus one. Used to be able to talk about the golde ratio and its reciprocal
+public let PHI_P1 : CGFloat = 1.6180339887498948482045868343656381177203091798057628621
 
 
 
+/**
+This works in conjunction with FibGraphView, which divideds numbers in the fibonacci
+sequence by each other to show that they ever approach PHI
 
-//      this works in conjunction with FibGraphView, which divideds numbers in the fibonacci
-//sequence by each other to show that they ever approach PHI
-//
-//      this can be represented graphically with one number in the sequecnce as x and another as y, so 
-//storing numbers in the sequence like this is a nice precursor to that
+This can be represented graphically with one number in the sequecnce as x and another as y, so
+storing numbers in the sequence like this is a nice precursor to that
+*/
 internal typealias Pair = (x: Int , y: Int)
 
 
@@ -43,8 +44,10 @@ internal typealias Pair = (x: Int , y: Int)
 
 
 
-
-public class DasFibbonaciSequence : NSObject {
+/**
+ Represents the fibonnaci sequence. Originally menant to be graphed.
+*/
+public class DASFibbonaciSequence : NSObject {
     
     
     ///number for the sequence to start with. there is a function to call to change this.
@@ -55,7 +58,12 @@ public class DasFibbonaciSequence : NSObject {
     private (set) var numbers = [Int]()
     
     
-    ///a constant to note that the class does not yet support negative terms
+    /**
+        A constant to note that the class does not yet support negative terms. As well, note that the Fibonnacci sequence
+        is determined by two numbers. Usually, this is one and zero. In the current version of the application, the user
+        can change the starting "1" to any natural number. But the application does not yet support changing the "0", 
+        which is what this constant represents. 
+    */
     let previousToStartingNumber : Int = 0
 
     
@@ -75,7 +83,6 @@ public class DasFibbonaciSequence : NSObject {
     private (set) var stringPointRepresentation = [String]()
     
     
-    var smallNumberFormatter : NSNumberFormatter
     
     
     
@@ -85,15 +92,6 @@ public class DasFibbonaciSequence : NSObject {
             
             return numbers.count
         }
-    }
-    
-    
-    ///the initialization function. note that the only thing initialized is the number formatter used
-    override init () {
-        
-        smallNumberFormatter = NSNumberFormatter()
-        smallNumberFormatter.numberStyle = NSNumberFormatterStyle.ScientificStyle
-        smallNumberFormatter.maximumSignificantDigits = 8
     }
     
     

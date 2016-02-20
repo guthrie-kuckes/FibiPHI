@@ -16,38 +16,38 @@ import AppKit
 //TODO: make as much as possible of this use CoreGraphics
 //TODO: implement this as two classes, have a plain graph paper class
 
-//the point at teh top left corner of the screen
+
+
+///the point at teh top left corner of the screen
 private let zPoint = CGPointMake(0, 0)
 
 
-//how we draw the graph scale labels.
-// TODO: Make the labels look nicer
+///how we draw the graph scale labels.
+/// TODO: Make the labels look nicer
 private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() ] //, NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
 
 
 ///the width of the scale lines in the graph
-//TODO: implement changing the size and density of the line as we zoom in and out
+// TODO: implement changing the size and density of the line as we zoom in and out
 internal let graphLineWidth : CGFloat = 1
 
 
-//the pixel thickness of the line y = PHI * x
+///the pixel thickness of the line y = PHI * x
 private let PHILineWidth : CGFloat = 3.0;
 
-
-//this is not being used. note it is specified incorrectly
-///private let BabyPowder = NSColor(colorLiteralRed: 254, green: 254, blue: 250, alpha: 1.0)
 
 
 ///the grey color of the lines on the graph.
 private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 171/255, alpha: 1.0  )
 
 
-///Slightly extended NSBezierPath to save myself a few lines of code, making a method for a few calls I
-///often do in succession
+/**
+    Slightly extended NSBezierPath to save myself a few lines of code, making a method for a few calls I often do in succession
+*/
 internal extension NSBezierPath {
     
     
-    ///moves the path to point, and then draws a line to toPoint
+    ///Moves the path to point, and then draws a line to toPoint
     func lineFrom(point point: CGPoint, toPoint: CGPoint) {
         
         self.moveToPoint(point)
@@ -64,7 +64,7 @@ public class DASFibGraphView : NSView  {
     
 
     ///the data that the graph is going to represent
-    private (set) var fibonnaciNumbers = DasFibbonaciSequence(computedTerms: 30)
+    private (set) var fibonnaciNumbers = DASFibbonaciSequence(computedTerms: 30)
     
     
     ///the scale of the graph. in px : 1 unit
