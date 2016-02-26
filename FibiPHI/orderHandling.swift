@@ -66,9 +66,8 @@ internal enum Ordering : CGFloat {
     Deals with the fact that the x/y of a point in the graph should be switched depending on the value
     of the golden ratio which is used. Uses the shared Ordering
     
-    - parameters:
-        - x: What may or may not be the x coordinate of the point
-        - y: What may or may not be the y coordinate of the point
+    - parameter x: What may or may not be the x coordinate of the point
+    - parameter y: What may or may not be the y coordinate of the point
  
     - returns: A point made in the correct order, according to the singleton Ordering instance
  

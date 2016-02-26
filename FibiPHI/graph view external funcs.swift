@@ -12,7 +12,7 @@ import Foundation
 /**
  Gives the value, in uints that one small scale marker should represent.
  
- - Parameter scale:the scale of the graph, in pixels representing one unit
+ - parameter scale: the scale of the graph, in pixels representing one unit
  - returns: the width of one of the small (non bold) scale markers, in units
  */
 internal func smallBarValueForScale(scale scale: CGFloat) -> CGFloat {

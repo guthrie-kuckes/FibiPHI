@@ -14,7 +14,7 @@
     <a title="AppDelegate Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FibiPHI Docs</a> (83% documented)</p>
+        <p><a href="../index.html">FibiPHI Docs</a> (98% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -108,7 +108,15 @@
         <section>
           <section class="section">
             <h1>AppDelegate</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">@NSApplicationMain</span> <span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSApplicationDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>The applications delegate. Handles program lifetime notifications. This application adopts a simple
+structure, so the delegate also manages the window and owns most other objects (directly or indirectly)
+in the application.</p>
 
           </section>
           <section class="section task-group-section">
@@ -127,8 +135,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The application&rsquo;s window.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">NSWindow</span><span class="o">!</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -325,9 +341,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7FibiPHI11AppDelegate23takeScaleSliderIntValueFS0_FPSs9AnyObject_T_"></a>
-                    <a name="//apple_ref/swift/Method/takeScaleSliderIntValue(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7FibiPHI11AppDelegate23takeScaleSliderIntValueFS0_FPSs9AnyObject_T_">takeScaleSliderIntValue(_:)</a>
+                    <a name="/s:FC7FibiPHI11AppDelegate26takeScaleSliderDoubleValueFS0_FPSs9AnyObject_T_"></a>
+                    <a name="//apple_ref/swift/Method/takeScaleSliderDoubleValue(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7FibiPHI11AppDelegate26takeScaleSliderDoubleValueFS0_FPSs9AnyObject_T_">takeScaleSliderDoubleValue(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -335,8 +351,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Connected to the scale slider in the application.</p>
 
+<p>When the slider stops moving, the scale of the graph changes to that indicated by the slider.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">takeScaleSliderDoubleValue</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -354,8 +380,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Connected to the text field of the application.</p>
 
+<p>When the user types an integer into the text field and hits enter, the fibonacci sequence changes to 
+have that starting number and the graph and table view are redrawn to reflect this.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">takeTextFieldStartingValue</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -373,8 +410,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Called on launch. Does some brief setup</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">applicationDidFinishLaunching</span><span class="p">(</span><span class="nv">aNotification</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -392,8 +437,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Called on termination. Currently a blank implementation.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">applicationWillTerminate</span><span class="p">(</span><span class="nv">aNotification</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -457,7 +510,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Guthrie Kuckes</a>. All rights reserved. (Last updated: 2016-02-20)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Guthrie Kuckes</a>. All rights reserved. (Last updated: 2016-02-26)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

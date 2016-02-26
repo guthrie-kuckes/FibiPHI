@@ -27,8 +27,8 @@ private let zPoint = CGPointMake(0, 0)
 private let markerDrawingAttributes = [NSForegroundColorAttributeName : NSColor.blueColor() ] //, NSBackgroundColorAttributeName : NSColor.lightGrayColor()]
 
 
-///the width of the scale lines in the graph
 // TODO: implement changing the size and density of the line as we zoom in and out
+///the width of the scale lines in the graph
 internal let graphLineWidth : CGFloat = 1
 
 
@@ -59,7 +59,12 @@ internal extension NSBezierPath {
 
 
 
+/**
 
+    Graphs the Fibonnacci sequence, using a DASFibonnacci sequence object for its data. 
+ 
+    - seeAlso: DASFibbonaciSequence
+*/
 public class DASFibGraphView : NSView  {
     
 
@@ -118,7 +123,7 @@ public class DASFibGraphView : NSView  {
         
         let requestedMagnification = CGFloat(event.magnification + 1.0)
         let combinedMagnification = CGFloat(self.coordinateDilation) * requestedMagnification
-        Swift.print("\(requestedMagnification) the event mag was")
+        //Swift.print("\(requestedMagnification) the event mag was")
         
         DasSharedDelegate?.ScaleSlider.doubleValue = Double(combinedMagnification) //moves the scale slider as we use the mousepad to change the scale
         

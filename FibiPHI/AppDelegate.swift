@@ -14,12 +14,16 @@ import AppKit
 var DasSharedDelegate : AppDelegate? = nil
 
 
-
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate  {
+/**
+ The applications delegate. Handles program lifetime notifications. This application adopts a simple
+ structure, so the delegate also manages the window and owns most other objects (directly or indirectly)
+ in the application.
+*/
+@NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate  {
 
     
     
+    ///The application's window.
     @IBOutlet weak var window: NSWindow!
 
     ///Shows the user wether they are using PHI or its reciprocal
@@ -53,12 +57,24 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     }
     
     
-    @IBAction func takeScaleSliderIntValue(sender: AnyObject) {
+    /**
+        Connected to the scale slider in the application.
+        
+        When the slider stops moving, the scale of the graph changes to that indicated by the slider.
+    */
+    @IBAction func takeScaleSliderDoubleValue(sender: AnyObject) {
         
         let newValue : CGFloat = CGFloat(ScaleSlider.doubleValue)
         fibGraphingView.changeScale(newValue)
     }
     
+    
+    /**
+        Connected to the text field of the application.
+        
+        When the user types an integer into the text field and hits enter, the fibonacci sequence changes to 
+        have that starting number and the graph and table view are redrawn to reflect this.
+    */
     @IBAction func takeTextFieldStartingValue(sender: AnyObject) {
         
         let newValue = startingNumberField.integerValue
@@ -67,16 +83,15 @@ class AppDelegate: NSObject, NSApplicationDelegate  {
     }
     
     
-    
+    ///Called on launch. Does some brief setup
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
         
         DasSharedDelegate = self
         self.ScaleSlider.floatValue = 100.0
         self.resiudalTableView.setDataSource(self.fibGraphingView.fibonnaciNumbers)
-        
     }
 
+    ///Called on termination. Currently a blank implementation.
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }

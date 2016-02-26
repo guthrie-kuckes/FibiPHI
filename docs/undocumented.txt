@@ -1,11 +1,2 @@
 DasFibGraphView.swift
-	internal let graphLineWidth : CGFloat = 1
-	public class DASFibGraphView : NSView
 	required public init?(coder: NSCoder)
-AppDelegate.swift
-	class AppDelegate: NSObject, NSApplicationDelegate
-	@IBOutlet weak var window: NSWindow!
-	@IBAction func takeScaleSliderIntValue(sender: AnyObject)
-	@IBAction func takeTextFieldStartingValue(sender: AnyObject)
-	func applicationDidFinishLaunching(aNotification: NSNotification)
-	func applicationWillTerminate(aNotification: NSNotification)

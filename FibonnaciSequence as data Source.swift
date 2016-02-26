@@ -42,6 +42,7 @@ private func makeFibbonnaciResidualNumberFormatter() -> NSNumberFormatter {
 extension DASFibbonaciSequence : NSTableViewDataSource {
     
     
+    
     ///Tells the table to display all the numbers in the fibonnaci sequence that we have computed
     public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return self.numbers.count
