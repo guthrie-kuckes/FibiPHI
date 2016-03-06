@@ -96,7 +96,7 @@ public class DASFibbonaciSequence : NSObject {
     
     
     ///a convenience initializer which immediatly calls realizeNumberOfTerms, to make sure it is filled out
-    convenience init(computedTerms: Int) {
+    public convenience init(computedTerms: Int) {
         
         self.init()
         self.realizeNumberOfTerms(computedTerms)
