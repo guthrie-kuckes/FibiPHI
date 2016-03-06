@@ -38,7 +38,7 @@ private let PHILineWidth : CGFloat = 3.0;
 
 
 ///the grey color of the lines on the graph.
-private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 171/255, alpha: 1.0  )
+private let ourGrey = NSColor(colorLiteralRed: 172/255, green: 170/255, blue: 171/255, alpha: 1.0  ).CGColor
 
 
 /**
@@ -154,11 +154,11 @@ public class DASFibGraphView : NSView  {
         var verticalEnd = [CGPoint]()
         
         
-        var horizontalBezier = NSBezierPath()
-        var horizontalBold = NSBezierPath()
+        var horizontalBezier = CGPathCreateMutable()
+        var horizontalBold = CGPathCreateMutable()
         
-        var verticalBezier = NSBezierPath()
-        var verticalBold = NSBezierPath()
+        var verticalBezier = CGPathCreateMutable()
+        var verticalBold = CGPathCreateMutable()
         
         
 
@@ -171,16 +171,23 @@ public class DASFibGraphView : NSView  {
         graphMaker.waitUntilAllOperationsAreFinished()
 
         
-        Swift.print("horizontal bold had \(horizontalBold.elementCount), vertical bold had \(verticalBold.elementCount)")
+       //Swift.print("horizontal bold had \(horizontalBold.elementCount), vertical bold had \(verticalBold.elementCount)")
         Swift.print("horizontalStart had \(horizontalStart.count) outside")
         
-        ourGrey.setStroke()
-        horizontalBezier.stroke()
-        verticalBezier.stroke()
-            
-        NSColor.blackColor().setStroke()
-        horizontalBold.stroke()
-        verticalBold.stroke()
+        let currentContext = NSGraphicsContext.currentContext()?.CGContext
+        CGContextAddPath(currentContext, horizontalBezier)
+        CGContextAddPath(currentContext, verticalBezier)
+        CGContextSetLineWidth(currentContext, graphLineWidth)
+        CGContextSetStrokeColorWithColor(currentContext, ourGrey)
+        CGContextStrokePath(currentContext)
+        
+        
+        CGContextSetStrokeColorWithColor(currentContext, NSColor.blackColor().CGColor)
+        CGContextSetLineWidth(currentContext, graphLineWidth + 1.0)
+        CGContextAddPath(currentContext, verticalBold)
+        CGContextAddPath(currentContext, horizontalBold)
+        CGContextStrokePath(currentContext)
+
         
         
         
@@ -243,9 +250,7 @@ public class DASFibGraphView : NSView  {
         let FibonacciBezierPath = NSBezierPath()
         
         FibonacciBezierPath.moveToPoint(firstPoint)
-        
-        let currentContext = NSGraphicsContext.currentContext()?.CGContext
-        
+                
         assert(currentContext != nil, "error: problems getting a CGContext from an NSGraphicsContext")
         
         
