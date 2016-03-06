@@ -13,7 +13,7 @@
 		6B6E33C41A926A8800089FCA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E33C21A926A8800089FCA /* MainMenu.xib */; };
 		6B6E33D01A926A8800089FCA /* FibiPHITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */; };
 		6B6E33DA1A926AD500089FCA /* DASFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */; };
-		6B6E33DC1A926B3300089FCA /* DASFibGraphViewT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DASFibGraphViewT.swift */; };
+		6B6E33DC1A926B3300089FCA /* DASFibGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33DB1A926B3300089FCA /* DASFibGraphView.swift */; };
 		EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */; };
 		EE0983741C4B246D0070B7CE /* DASFibonacciSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */; };
 		EE1CD9831C6FBA440060E27C /* docs in Resources */ = {isa = PBXBuildFile; fileRef = EE1CD9821C6FBA440060E27C /* docs */; };
@@ -63,7 +63,7 @@
 		6B6E33CE1A926A8800089FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6E33CF1A926A8800089FCA /* FibiPHITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibiPHITests.swift; sourceTree = "<group>"; };
 		6B6E33D91A926AD500089FCA /* DASFibonacciSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DASFibonacciSequence.swift; sourceTree = "<group>"; };
-		6B6E33DB1A926B3300089FCA /* DASFibGraphViewT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DASFibGraphViewT.swift; path = ../DASFibGraphViewT.swift; sourceTree = "<group>"; };
+		6B6E33DB1A926B3300089FCA /* DASFibGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DASFibGraphView.swift; path = ../DASFibGraphView.swift; sourceTree = "<group>"; };
 		EE0983721C4B22140070B7CE /* FibonnaciSequence as data Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FibonnaciSequence as data Source.swift"; sourceTree = "<group>"; };
 		EE1CD9821C6FBA440060E27C /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		EE3E02451C6F0BBB0005FB64 /* graph view external funcs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "graph view external funcs.swift"; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				6B11E4B21AC7342A00EDCC97 /* orderHandling.swift */,
-				6B6E33DB1A926B3300089FCA /* DASFibGraphViewT.swift */,
+				6B6E33DB1A926B3300089FCA /* DASFibGraphView.swift */,
 				EE3E02451C6F0BBB0005FB64 /* graph view external funcs.swift */,
 				6B6E33BE1A926A8800089FCA /* AppDelegate.swift */,
 				6B6E33C01A926A8800089FCA /* Images.xcassets */,
@@ -335,7 +335,7 @@
 			files = (
 				EE3E02461C6F0BBB0005FB64 /* graph view external funcs.swift in Sources */,
 				6B6E33DA1A926AD500089FCA /* DASFibonacciSequence.swift in Sources */,
-				6B6E33DC1A926B3300089FCA /* DASFibGraphViewT.swift in Sources */,
+				6B6E33DC1A926B3300089FCA /* DASFibGraphView.swift in Sources */,
 				6B6E33BF1A926A8800089FCA /* AppDelegate.swift in Sources */,
 				EE85F74F1C67A7340027B1CD /* cConvenience.m in Sources */,
 				EE0983731C4B22140070B7CE /* FibonnaciSequence as data Source.swift in Sources */,
