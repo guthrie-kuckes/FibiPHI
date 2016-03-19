@@ -33,11 +33,11 @@ class FibiPHITests: XCTestCase {
     
     func testFibSequencePerformance() {
         
-        let newSeq = DasFibbonaciSequence()
+        let newSeq = DASFibbonaciSequence()
         self.measureBlock { () -> Void in
             
-            newSeq.realizeNumberOfTerms(50)
-            for i in 0...999 {
+            newSeq.realizeNumberOfTerms(1000)
+            for i in 0...4 {
                 newSeq.changeStartingNumber(i)
             }
         }
@@ -45,6 +45,7 @@ class FibiPHITests: XCTestCase {
     
     let rectValues : CGFloat  = 1_000
     
+    /*
     func testLineGenerationPerformance() {
         
 
@@ -112,6 +113,8 @@ class FibiPHITests: XCTestCase {
         }
 
     }
+    */
+    
     
     /*
     func testPerformanceExample() {

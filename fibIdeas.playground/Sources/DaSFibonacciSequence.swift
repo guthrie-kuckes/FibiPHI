@@ -55,7 +55,7 @@ public class DASFibbonaciSequence : NSObject {
     
     
     ///numbers in the sequence
-    private (set) var numbers = [Double]()
+    public private (set) var numbers = [Double]()
     
     
     /**

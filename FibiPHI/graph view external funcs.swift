@@ -10,7 +10,8 @@
 
 
 /**
- Gives the value, in uints that one small scale marker should represent.
+    Gives the value, in uints that one small scale marker should represent.
+
  
  - parameter scale: the scale of the graph, in pixels representing one unit
  - returns: the width of one of the small (non bold) scale markers, in units
@@ -21,6 +22,8 @@ internal func smallBarValueForScale(scale scale: CGFloat) -> CGFloat {
     let theValue : CGFloat = pow(ten, 2.0 - ceil( log10( scale/2.5 ) ) ) / 5.0
     return theValue
 }
+
+
 
 /**
  Provides a no argument block which can generate lines for the graph, returning results through arguments provided to the function.

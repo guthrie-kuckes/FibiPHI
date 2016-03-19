@@ -57,6 +57,21 @@ internal extension NSBezierPath {
 
 
 
+/**
+ Gives the opacity for the width of a small bar (in px)
+ 
+ - parameter smallBarWidth: the width of one of the small bars on the graph, in pixels
+ - returns: the percent opacity for the scale lines, in percent (e.g., the alpha of a CGColor)
+ 
+ - seeAlso: smallBarValueForScale()
+
+*/
+internal func opacityForScale(smallBarWidth px: CGFloat) -> CGFloat {
+    
+    let toReturn = (200.0/9.0 + (7.0/18.0 + 5.0) * px) / 100.0;
+    //print("the value was \(toReturn)")
+    return toReturn
+}
 
 
 /**
@@ -174,15 +189,24 @@ public class DASFibGraphView : NSView  {
        //Swift.print("horizontal bold had \(horizontalBold.elementCount), vertical bold had \(verticalBold.elementCount)")
         Swift.print("horizontalStart had \(horizontalStart.count) outside")
         
+        
+        
+        let largeBar = smallBarValueForScale(scale: self.coordinateDilation) * coordinateDilation
+        let goodOpacity = opacityForScale(smallBarWidth: largeBar)
+        Swift.print("largebar was \(largeBar)")
+        let adjustedGrey = CGColorCreateCopyWithAlpha(ourGrey, goodOpacity)
+        let adjustedBlack = CGColorCreateCopyWithAlpha(NSColor.blackColor().CGColor, goodOpacity + 0.1)
+        
+        
         let currentContext = NSGraphicsContext.currentContext()?.CGContext
         CGContextAddPath(currentContext, horizontalBezier)
         CGContextAddPath(currentContext, verticalBezier)
         CGContextSetLineWidth(currentContext, graphLineWidth)
-        CGContextSetStrokeColorWithColor(currentContext, ourGrey)
+        CGContextSetStrokeColorWithColor(currentContext, adjustedGrey)
         CGContextStrokePath(currentContext)
         
         
-        CGContextSetStrokeColorWithColor(currentContext, NSColor.blackColor().CGColor)
+        CGContextSetStrokeColorWithColor(currentContext, adjustedBlack)
         CGContextSetLineWidth(currentContext, graphLineWidth + 1.0)
         CGContextAddPath(currentContext, verticalBold)
         CGContextAddPath(currentContext, horizontalBold)
