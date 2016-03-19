@@ -6,7 +6,7 @@
 //  Copyright © 2016 Obsidian Design. All rights reserved.
 //
 
-import Foundation
+
 
 
 /**
@@ -34,7 +34,7 @@ internal func smallBarValueForScale(scale scale: CGFloat) -> CGFloat {
  - parameter isVertical: true means that lines will be paralell with the y axis. false means that the lines will be paralell to the x axis
  - parameter coordinateDilation: the scale of the graph, in pixels per unit
 */
-internal func getLineMaker(inout normalPath: NSBezierPath, inout boldPath: NSBezierPath, startPointArray: UnsafeMutablePointer<[CGPoint]>, endPointArray: UnsafeMutablePointer<[CGPoint]>, let theRect: CGRect, let isVertical: Bool, let coordinateDilation: CGFloat) -> () -> Void {
+internal func getLineMaker(inout normalPath: CGMutablePath, inout boldPath: CGMutablePath, startPointArray: UnsafeMutablePointer<[CGPoint]>, endPointArray: UnsafeMutablePointer<[CGPoint]>, let theRect: CGRect, let isVertical: Bool, let coordinateDilation: CGFloat) -> () -> Void {
 
     
     let startingValue : CGFloat
@@ -111,11 +111,13 @@ internal func getLineMaker(inout normalPath: NSBezierPath, inout boldPath: NSBez
             
             if(timesThroughLoop % 5 == 0) {
                 
-                boldPath.lineFrom(point: newStartPoint, toPoint: newEndPoint)
+                CGPathMoveToPoint(boldPath, nil, newStartPoint.x, newStartPoint.y)
+                CGPathAddLineToPoint(boldPath, nil, newEndPoint.x, newEndPoint.y)
                 
             } else {
                 
-                normalPath.lineFrom(point: newStartPoint, toPoint: newEndPoint)
+                CGPathMoveToPoint(normalPath, nil, newStartPoint.x, newStartPoint.y)
+                CGPathAddLineToPoint(normalPath, nil, newEndPoint.x, newEndPoint.y)
             }
             
             
@@ -126,8 +128,8 @@ internal func getLineMaker(inout normalPath: NSBezierPath, inout boldPath: NSBez
             
         }
         
-        normalPath.lineWidth = graphLineWidth
-        boldPath.lineWidth = graphLineWidth + 1
+        //normalPath.lineWidth = graphLineWidth
+        //boldPath.lineWidth = graphLineWidth + 1
         
         //Swift.print("startPoint had \(startPointArray.memory.count) inside the func" )
         
